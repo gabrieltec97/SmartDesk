@@ -1,0 +1,113 @@
+/* Extra small (máximo 575px) */
+@media (max-width: 575px) {
+    .no-mobile
+    {
+        display: none !important;
+    }
+
+    .mobile-format
+    {
+      margin-top: -5px !important;
+    }
+
+    .title-format
+    {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .fine-tunning
+    {
+        margin-bottom: -8px !important;
+    }
+
+    .first-item
+    {
+        margin-top: -15px !important;
+    }
+
+    .preview-format
+    {
+        width: 115% !important;
+    }
+
+    .field-format
+    {
+        width: 125% !important;
+    }
+
+    .field-modal-format
+    {
+        width: 115% !important;
+    }
+
+    .livewire-input-format
+    {
+        margin-left: 15px;
+        width: 90%;
+    }
+
+    .image-format
+    {
+        width: 125%;
+        height: 90%;
+        border-radius: 10px;
+        margin-left: -25px;
+    }
+
+    .sign-format
+    {
+      width: 135% !important;
+    }
+
+    .dashboard-legend
+    {
+        margin-top: -7px;
+    }
+}
+
+/* Small (de 576px até 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+
+}
+
+/* Medium (de 768px até 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    /* estilos para tablets */
+}
+
+/* Large (de 992px até 1199px) */
+@media (min-width: 992px){
+    .field-modal-format
+    {
+        width: 110% !important;
+    }
+
+    .livewire-input-format
+    {
+        margin-left: 20px;
+        width: 96.5%;
+    }
+
+    .signature-field-format
+    {
+        width: 400px;
+        height: 200px;
+    }
+
+    .image-format
+    {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        margin-left: -25px;
+        margin-bottom: 20px !important;
+    }
+
+    .sign-format
+    {
+        width: 300px !important;
+        height: 200px !important;
+    }
+}
+
