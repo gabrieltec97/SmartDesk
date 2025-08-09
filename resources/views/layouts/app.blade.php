@@ -46,17 +46,26 @@
                     </a>
                 </li>
             @endif
-            @if(Auth::user()->can('Gerenciar unidades'))
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('unidades.index') ? 'active' : '' }}"
-                       href="{{ route('unidades.index') }}">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-building-user mb-1 {{ Route::is('unidades.index') ? '' : 'format-color' }} sidenav-icon"></i>
+                @if(Auth::user()->can('Gerenciar unidades'))
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('unidades.*') ? 'active' : '' }}" data-bs-toggle="collapse" href="#areaTecnicaMenu" role="button" aria-expanded="false" aria-controls="areaTecnicaMenu">
+                            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-building-user mb-1 {{ Route::is('unidades.*') ? '' : 'format-color' }} sidenav-icon"></i>
+                            </div>
+                            <span class="nav-link-text ms-1 font-weight-bold">Área Técnica</span>
+                        </a>
+                        <div class="collapse" id="areaTecnicaMenu">
+                            <a class="nav-link ATitem {{ Route::is('unidades.index') ? 'active' : '' }}" href="{{ route('unidades.index') }}">
+                                <span class="sidenav-normal"><i class="fa-solid fa-cubes-stacked ATicon"></i> Estoque</span>
+                            </a>
+
+                            <a class="nav-link ATitem {{ Route::is('unidades.index') ? 'active' : '' }}" href="{{ route('unidades.index') }}">
+                                <span class="sidenav-normal"><i class="fa-solid fa-users ATicon"></i> Funcionários</span>
+                            </a>
                         </div>
-                        <span class="nav-link-text ms-1 font-weight-bold">Área Técnica</span>
-                    </a>
-                </li>
-            @endif
+                    </li>
+                @endif
+
             @if(Auth::user()->can('Gerenciar entregas'))
                 <li class="nav-item">
                     <a class="nav-link  {{ Route::is('entregas.create') ? 'active' : '' }}"
