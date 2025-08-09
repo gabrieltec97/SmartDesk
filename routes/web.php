@@ -12,11 +12,10 @@ Route::get('/', function(){
     return redirect(route('login'));
 });
 
-Route::middleware(['auth'])->group(function (){
-    Route::middleware(['role:Administrador'])->group(function (){
-        Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
-        Route::resource('/usuarios', UserController::class);
-        Route::get('/verificar-email', [UserController::class, 'checkEmail']);
-//        Route::resource('/estoque', [EstoqueController::class]);
-    });
-});
+Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+Route::resource('/usuarios', UserController::class);
+Route::get('/verificar-email', [UserController::class, 'checkEmail']);
+
+Route::resource('unidades', UnitController::class);
+Route::resource('blocos', BlockController::class);
+Route::resource('entregas', PacketController::class);
