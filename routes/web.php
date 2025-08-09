@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlockController;
+use App\Http\Controllers\CondominiosController;
 use App\Http\Controllers\EstoqueController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
@@ -20,3 +21,5 @@ Route::resource('unidades', UnitController::class);
 Route::resource('blocos', BlockController::class);
 Route::resource('entregas', PacketController::class);
 Route::resource('estoque', EstoqueController::class);
+Route::resource('condominios', CondominiosController::class);
+Route::resource('funcionarios', CondominiosController::class);
