@@ -52,7 +52,7 @@
                             <span class="nav-link-text ms-1 font-weight-bold">Área Técnica</span>
                         </a>
                         <div class="collapse" id="areaTecnicaMenu">
-                            <a class="nav-link ATitem"  href="#">
+                            <a class="nav-link ATitem"  href="{{ route('estoque.index') }}">
                                 <span class="sidenav-normal"><i class="fa-solid fa-cubes-stacked ATicon"></i> Estoque</span>
                             </a>
 
