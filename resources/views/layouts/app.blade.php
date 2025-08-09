@@ -53,7 +53,7 @@
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-building-user mb-1 {{ Route::is('unidades.index') ? '' : 'format-color' }} sidenav-icon"></i>
                         </div>
-                        <span class="nav-link-text ms-1 font-weight-bold">Unidades</span>
+                        <span class="nav-link-text ms-1 font-weight-bold">Área Técnica</span>
                     </a>
                 </li>
             @endif
@@ -64,7 +64,7 @@
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-circle-plus mb-1 {{ Route::is('entregas.create') ? '' : 'format-color' }} sidenav-icon"></i>
                         </div>
-                        <span class="nav-link-text ms-1 font-weight-bold">Nova Entrega</span>
+                        <span class="nav-link-text ms-1 font-weight-bold">Nova Retirada</span>
                     </a>
                 </li>
 
