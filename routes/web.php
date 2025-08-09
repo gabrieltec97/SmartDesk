@@ -17,6 +17,6 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
         Route::resource('/usuarios', UserController::class);
         Route::get('/verificar-email', [UserController::class, 'checkEmail']);
-        Route::resource('/estoque', [EstoqueController::class]);
+//        Route::resource('/estoque', [EstoqueController::class]);
     });
 });
