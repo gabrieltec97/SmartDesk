@@ -36,61 +36,69 @@
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-chart-line {{ Route::is('dashboard') ? '' : 'format-color' }} sidenav-icon"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 font-weight-bold">Dashboard</span>
+            <li class="nav-item">
+                <a class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-chart-line {{ Route::is('dashboard') ? '' : 'format-color' }} sidenav-icon"></i>
+                    </div>
+                    <span class="nav-link-text ms-1 font-weight-bold">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-items">
+                <a class="nav-link {{ Route::is('unidades.*') ? 'active' : '' }}" data-bs-toggle="collapse" href="#areaTecnicaMenu" role="button" aria-expanded="false" aria-controls="areaTecnicaMenu">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-wrench mb-1 {{ Route::is('unidades.*') ? '' : 'format-color' }} sidenav-icon"></i>
+                    </div>
+                    <span class="nav-link-text ms-1 font-weight-bold">Área Técnica</span>
+                </a>
+                <div class="collapse" id="areaTecnicaMenu">
+                    <a class="nav-link ATitem"  href="{{ route('estoque.index') }}">
+                        <span class="sidenav-normal"><i class="fa-solid fa-cubes-stacked ATicon"></i> Estoque</span>
                     </a>
-                </li>
-                    <li class="nav-items">
-                        <a class="nav-link {{ Route::is('unidades.*') ? 'active' : '' }}" data-bs-toggle="collapse" href="#areaTecnicaMenu" role="button" aria-expanded="false" aria-controls="areaTecnicaMenu">
-                            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-building-user mb-1 {{ Route::is('unidades.*') ? '' : 'format-color' }} sidenav-icon"></i>
-                            </div>
-                            <span class="nav-link-text ms-1 font-weight-bold">Área Técnica</span>
-                        </a>
-                        <div class="collapse" id="areaTecnicaMenu">
-                            <a class="nav-link ATitem"  href="{{ route('estoque.index') }}">
-                                <span class="sidenav-normal"><i class="fa-solid fa-cubes-stacked ATicon"></i> Estoque</span>
-                            </a>
 
-                            <a class="nav-link ATitem" href="#">
-                                <span class="sidenav-normal"><i class="fa-solid fa-users ATicon"></i> Funcionários</span>
-                            </a>
-                        </div>
-                    </li>
-
-                <li class="nav-item">
-                    <a class="nav-link  {{ Route::is('entregas.create') ? 'active' : '' }}"
-                       href="{{ route('entregas.create') }}">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-circle-plus mb-1 {{ Route::is('entregas.create') ? '' : 'format-color' }} sidenav-icon"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 font-weight-bold">Nova Retirada</span>
+                    <a class="nav-link ATitem" href="#">
+                        <span class="sidenav-normal"><i class="fa-solid fa-users ATicon"></i> Funcionários</span>
                     </a>
-                </li>
+                </div>
+            </li>
 
-                <li class="nav-item">
-                    <a class="nav-link  {{ Route::is('entregas.index') ? 'active' : '' }}"
-                       href="{{ route('entregas.index') }}">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-clock-rotate-left mb-1 {{ Route::is('entregas.index') ? '' : 'format-color' }} sidenav-icon"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 font-weight-bold">Histórico de Retiradas</span>
+            <li class="nav-items">
+                <a class="nav-link {{ Route::is('unidades.*') ? 'active' : '' }}" data-bs-toggle="collapse" href="#retiradasMenu" role="button" aria-expanded="false" aria-controls="areaTecnicaMenu">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-hand-holding-medical mb-1 {{ Route::is('unidades.*') ? '' : 'format-color' }} sidenav-icon"></i>
+                    </div>
+                    <span class="nav-link-text ms-1 font-weight-bold">Retiradas</span>
+                </a>
+                <div class="collapse" id="retiradasMenu">
+                    <a class="nav-link ATitem"  href="{{ route('estoque.index') }}">
+                        <span class="sidenav-normal"><i class="fa-solid fa-circle-plus ATicon"></i> Nova saída</span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Route::is('usuarios.index') ? 'active' : '' }}"
-                       href="{{ route('usuarios.index') }}">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-user mb-1 {{ Route::is('usuarios.index') ? '' : 'format-color' }} sidenav-icon"></i>
-                        </div>
-                        <span class="nav-link-text ms-1 font-weight-bold">Usuários</span>
-                    </a>
-                </li>
 
+                    <a class="nav-link ATitem" href="#">
+                        <span class="sidenav-normal"><i class="fa-solid fa-clock-rotate-left ATicon"></i> Histórico de saídas</span>
+                    </a>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Route::is('usuarios.index') ? 'active' : '' }}"
+                   href="{{ route('usuarios.index') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-building-wheat mb-1 {{ Route::is('usuarios.index') ? '' : 'format-color' }} sidenav-icon"></i>
+                    </div>
+                    <span class="nav-link-text ms-1 font-weight-bold">Condomínios</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Route::is('usuarios.index') ? 'active' : '' }}"
+                   href="{{ route('usuarios.index') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-user mb-1 {{ Route::is('usuarios.index') ? '' : 'format-color' }} sidenav-icon"></i>
+                    </div>
+                    <span class="nav-link-text ms-1 font-weight-bold">Usuários</span>
+                </a>
+            </li>
         </ul>
     </div>
 </aside>
