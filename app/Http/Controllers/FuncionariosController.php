@@ -31,7 +31,7 @@ class FuncionariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->name);
     }
 
     /**

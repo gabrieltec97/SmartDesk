@@ -19,7 +19,7 @@
 
                             <!-- Coluna dos botões -->
                             <div class="col-md-6 col-12 d-flex justify-content-center justify-content-lg-end gap-2 mt-2 mt-md-0">
-                                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#new-block"><i class="fa-solid fa-user-plus icon-format"></i> Novo funcionário</button>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-block"><i class="fa-solid fa-user-plus icon-format"></i> Novo funcionário</button>
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
 
                                 <div class="col-12 mt-3">
                                     <span class="font-weight-bold modal-label">Setor:</span>
-                                    <select name="profile" id="profile" class="form-control input-format mt-2">
+                                    <select name="sector" id="sector" class="form-control input-format mt-2">
                                         <option value="selecione" disabled selected>Selecione</option>
                                         <option value="Administrador">Área Técnica</option>
                                         <option value="Operador">Gestão</option>
