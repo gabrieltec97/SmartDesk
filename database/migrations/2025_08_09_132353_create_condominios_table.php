@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('condominios', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->string('localizacao');
+            $table->string('name');
+            $table->string('location');
             $table->timestamps();
         });
     }

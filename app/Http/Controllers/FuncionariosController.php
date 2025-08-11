@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Funcionarios;
+use Exception;
 use Illuminate\Http\Request;
 
 class FuncionariosController extends Controller
@@ -31,7 +32,12 @@ class FuncionariosController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->name);
+        $employee = new Funcionarios();
+        $employee->name = $request->name;
+        $employee->sector = $request->sector;
+        $employee->save();
+
+        return redirect()->back()->with('msg-success', 'Funcionário cadastrado com sucesso!');
     }
 
     /**
@@ -61,8 +67,17 @@ class FuncionariosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Funcionarios $funcionarios)
+    public function destroy(Funcionarios $funcionario)
     {
-        //
+        try {
+        $funcionario->delete();
+
+        return redirect()
+            ->back()
+            ->with('msg-success', 'Funcionário excluído com sucesso!');
+        }catch (Exception $e) {
+        
+        return redirect()->back()->with('msg-error', 'Falha ao excluir funcionário. Contate o suporte do sistema.');
+        }  
     }
 }

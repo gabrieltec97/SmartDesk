@@ -43,6 +43,14 @@
                                                     </div>
                                                 </div>
                                             </td>
+
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{ $employee->sector }}</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
                                 
                                             <td class="align-middle text-center text-sm">
                                                 <a href="{{ route('funcionarios.show', $employee->id) }}"><i class="fa-solid fa-user-pen cursor-pointer maintence-icon"></i></a>
@@ -57,7 +65,7 @@
 
                                         <script>
                                             const btnAlert{{ $employee->id }} = document.querySelector('#delete{{ $employee->id }}');
-                                            btnAlert{{ $user->id }}.addEventListener('click', function () {
+                                            btnAlert{{ $employee->id }}.addEventListener('click', function () {
                                                 Swal.fire({
                                                     html: `Deseja excluir o usuário <b>{{ $employee->name }}</b>?`,
                                                     icon: "question",
@@ -105,8 +113,8 @@
                                     <span class="font-weight-bold modal-label">Setor:</span>
                                     <select name="sector" id="sector" class="form-control input-format mt-2">
                                         <option value="selecione" disabled selected>Selecione</option>
-                                        <option value="Administrador">Área Técnica</option>
-                                        <option value="Operador">Gestão</option>
+                                        <option value="Área Técnica">Área Técnica</option>
+                                        <option value="Gestão">Gestão</option>
                                     </select>
                                 </div>
                             </div>
