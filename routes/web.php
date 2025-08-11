@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\CondominiosController;
 use App\Http\Controllers\EstoqueController;
+use App\Http\Controllers\FuncionariosController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PacketController;
@@ -22,4 +23,4 @@ Route::resource('blocos', BlockController::class);
 Route::resource('entregas', PacketController::class);
 Route::resource('estoque', EstoqueController::class);
 Route::resource('condominios', CondominiosController::class);
-Route::resource('funcionarios', CondominiosController::class);
+Route::resource('funcionarios', FuncionariosController::class);

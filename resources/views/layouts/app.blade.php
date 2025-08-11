@@ -56,7 +56,7 @@
                         <span class="sidenav-normal"><i class="fa-solid fa-cubes-stacked ATicon"></i> Estoque</span>
                     </a>
 
-                    <a class="nav-link ATitem" href="#">
+                    <a class="nav-link ATitem" href="{{ route('funcionarios.index') }}">
                         <span class="sidenav-normal"><i class="fa-solid fa-users ATicon"></i> Funcionários</span>
                     </a>
                 </div>

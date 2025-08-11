@@ -12,7 +12,8 @@ class FuncionariosController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('Employees.employees');
     }
 
     /**
