@@ -45,7 +45,7 @@
                 </a>
             </li>
             <li class="nav-items">
-                <a class="nav-link {{ Route::is('estoque.*') ? 'active' : '' }}" data-bs-toggle="collapse" href="#areaTecnicaMenu" role="button" aria-expanded="false" aria-controls="areaTecnicaMenu">
+                <a class="nav-link {{ Route::is('estoque.index') || Route::is('funcionarios.index') ? 'active' : '' }}" data-bs-toggle="collapse" href="#areaTecnicaMenu" role="button" aria-expanded="false" aria-controls="areaTecnicaMenu">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-wrench mb-1 {{ Route::is('unidades.*') ? '' : 'format-color' }} sidenav-icon"></i>
                     </div>

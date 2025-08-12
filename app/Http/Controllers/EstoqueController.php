@@ -13,7 +13,7 @@ class EstoqueController extends Controller
      */
     public function index()
     {
-        echo 'here';
+        return view('stock.stock-management');
     }
 
     /**
