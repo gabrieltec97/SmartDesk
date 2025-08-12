@@ -109,3 +109,14 @@
 {
     margin-right: 5px;
 }
+
+.bell-format
+{
+    margin-right: 5px !important;
+    cursor: pointer;
+}
+
+.logo-format
+{
+    border-radius: 10px;
+}

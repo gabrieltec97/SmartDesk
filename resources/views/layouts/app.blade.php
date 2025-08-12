@@ -29,7 +29,7 @@
            aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href="{{ route('dashboard') }}"
            target="_blank">
-            <img src="{{ asset('assets/img/e-locker.png') }}" class="navbar-brand-img h-100" alt="main_logo">
+            <img src="{{ asset('assets/img/porter.jpg') }}" class="navbar-brand-img h-100 logo-format" alt="main_logo">
             <span class="ms-1 font-weight-bold">SmartDesk 2025</span>
         </a>
     </div>
@@ -145,6 +145,11 @@
                     </div>
                 </div>
                 <ul class="navbar-nav justify-content-end">
+
+                    <li class="nav-item d-flex align-items-center">
+                        <i class="fa-solid fa-bell text-dark text-sm opacity-10 bell-format"></i>
+                    </li>
+
                     <li class="nav-item d-flex align-items-center no-mobile">
                         <p class="mt-3 font-weight-bold" style="font-size: 12px;">|</p>
                     </li>
