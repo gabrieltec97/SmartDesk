@@ -12,7 +12,7 @@ class CondominiosController extends Controller
      */
     public function index()
     {
-        echo 'here';
+        return view('condominium.condos');
     }
 
     /**
