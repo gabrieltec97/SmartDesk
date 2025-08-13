@@ -33,7 +33,18 @@ class EstoqueController extends Controller
         $item = new Estoque();
         $item->name = $request->name;
         $item->quantity = $request->quantity;
-        $item->serialNumber = $request->serialNumber;
+
+        if ($request->quantity == 1){
+            $item->quantity = $request->quantity . ' unidade';
+        }else{
+            $item->quantity = $request->quantity . ' unidades';
+        }
+
+        if ($request->serialNumber){
+            $item->serialNumber = $request->serialNumber;
+        }else{
+            $item->serialNumber = 'Não se aplica';
+        }
 
         $request->validate([
             'image' => 'required|image|max:2048', // 2MB
