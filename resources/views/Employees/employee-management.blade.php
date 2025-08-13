@@ -51,7 +51,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                
+
                                             <td class="align-middle text-center text-sm">
                                                 <a href="{{ route('funcionarios.show', $employee->id) }}"><i class="fa-solid fa-user-pen cursor-pointer maintence-icon"></i></a>
                                                 <i class="fa-solid fa-trash cursor-pointer text-danger" id="delete{{$employee->id}}"></i>
@@ -127,12 +127,11 @@
                         <span class="button-text"><i class="fa-solid fa-circle-check icon-format"></i> Cadastrar</span>
                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                     </button>
-
                 </div>
             </div>
         </div>
     </div>
-    
+
 
     @if(session('msg-success'))
         <script>

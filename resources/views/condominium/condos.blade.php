@@ -32,7 +32,6 @@
             </div>
         </div>
 
-
     <!-- Modal de novo condomínio-->
     <div class="modal fade" id="new-condo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -57,8 +56,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark modal-format"  data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary modal-format" id="newCondo">Cadastrar condomínio</button>
-                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    <button type="button" class="btn btn-primary modal-format" id="newCondo">
+                        <span class="button-text"><i class="fa-solid fa-circle-check icon-format"></i> Cadastrar condomínio</span>
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    </button>
                 </div>
             </div>
         </div>

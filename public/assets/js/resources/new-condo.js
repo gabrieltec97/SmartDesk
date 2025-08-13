@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
             message = 'Preencha corretamente a cidade do condomínio';
             playNotif(message);
         }else{
-            // text.classList.add('d-none');
-            // spinner.classList.remove('d-none');
+            text.classList.add('d-none');
+            spinner.classList.remove('d-none');
             form.submit();
         }
     });
