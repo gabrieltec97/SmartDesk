@@ -28,7 +28,14 @@ class CondominiosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $condominium = new Condominios();
+        $condominium->name = $request->name;
+        $condominium->location = $request->city;
+        $condominium->save();
+
+        return redirect()
+            ->back()
+            ->with('msg-success', 'Condomínio cadastrado com sucesso!');
     }
 
     /**
