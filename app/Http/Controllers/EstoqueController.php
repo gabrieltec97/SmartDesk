@@ -23,12 +23,6 @@ class EstoqueController extends Controller
         $item->name = $request->name;
         $item->quantity = $request->quantity;
 
-        if ($request->quantity == 1){
-            $item->quantity = $request->quantity . ' unidade';
-        }else{
-            $item->quantity = $request->quantity . ' unidades';
-        }
-
         if ($request->serialNumber){
             $item->serialNumber = $request->serialNumber;
         }else{
@@ -72,7 +66,34 @@ class EstoqueController extends Controller
      */
     public function update(Request $request, Estoque $estoque)
     {
-        //
+        $estoque->name = $request->name;
+        $estoque->quantity = $request->quantity;
+
+        if ($request->serialNumber){
+            $estoque->serialNumber = $request->serialNumber;
+        }else{
+            $estoque->serialNumber = 'Não se aplica';
+        }
+
+        if ($request->image){
+            $filePath = public_path($estoque->image);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+
+            $request->validate([
+                'image' => 'required|image|max:2048', // 2MB
+            ]);
+
+            $file = $request->file('image');
+            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img'), $filename);
+
+            $estoque->image = 'img/'. $filename;
+        }
+
+        $estoque->save();
+        return redirect()->back()->with('msg-success', 'Item atualizado com sucesso!');
     }
 
     /**

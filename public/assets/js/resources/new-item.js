@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const button = this;
         const text = button.querySelector('.button-text');
         const spinner = button.querySelector('.spinner-border');
-        const form = document.getElementById('condosForm');
+        const form = document.getElementById('new-itemForm');
 
         const name = document.getElementById('name').value;
         const quantity = document.getElementById('quantity').value;

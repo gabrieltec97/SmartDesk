@@ -32,7 +32,7 @@
             </div>
         </div>
 
-    <!-- Modal de novo condomínio-->
+    <!-- Modal de novo item-->
     <div class="modal fade" id="new-item" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -40,7 +40,7 @@
                     <h5 class="modal-title" id="exampleModalLongTitle">Novo item</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('estoque.store') }}" id="condosForm" enctype="multipart/form-data" method="post">
+                    <form action="{{ route('estoque.store') }}" id="new-itemForm" enctype="multipart/form-data" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-md-6">
@@ -54,7 +54,7 @@
 
                             <div class="col-12 col-md-6 mt-3">
                                 <label class="format-label">Nº de série</label>
-                                <input type="number" class="form-control text-black" name="serialNumber" autocomplete="off">
+                                <input type="text" class="form-control text-black" name="serialNumber" autocomplete="off">
                             </div>
 
                             <div class="col-12 col-md-6 mt-3">
