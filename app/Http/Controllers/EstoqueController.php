@@ -17,17 +17,6 @@ class EstoqueController extends Controller
         return view('stock.stock-management');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $item = new Estoque();
@@ -91,6 +80,14 @@ class EstoqueController extends Controller
      */
     public function destroy(Estoque $estoque)
     {
-        //
+        if ($estoque->image) {
+            $filePath = public_path($estoque->image);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+
+        $estoque->delete();
+        return redirect()->back()->with('msg-success', 'Item deletado com sucesso!');
     }
 }

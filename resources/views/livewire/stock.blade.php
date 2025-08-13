@@ -38,9 +38,33 @@
 
                         <td class="align-middle">
                             <span class="text-primary cursor-pointer" title="Editar dados cadastrais"><i class="fa-solid fa-pen-to-square"></i></span>
-                            <span class="text-danger cursor-pointer" title="Deletar condomínio" style="margin-left: 10px !important;"><i class="fa-solid fa-trash"></i></span>
+                            <span class="text-danger cursor-pointer" id="delete{{ $item->id }}" title="Deletar condomínio" style="margin-left: 10px !important;"><i class="fa-solid fa-trash"></i></span>
                         </td>
                     </tr>
+
+                    <form id="form-delete-{{ $item->id }}" action="{{ route('estoque.destroy', $item->id) }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+
+                    <script>
+                        const btnAlert{{ $item->id }} = document.querySelector('#delete{{ $item->id }}');
+                        btnAlert{{ $item->id }}.addEventListener('click', function () {
+                            Swal.fire({
+                                html: `Deseja excluir o item <b>{{ $item->name }}</b>?`,
+                                icon: "question",
+                                showCancelButton: true,
+                                cancelButtonText: 'Voltar',
+                                confirmButtonText: 'Excluir',
+                                confirmButtonColor: '#F97316',
+                                focusCancel: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    document.getElementById('form-delete-{{ $item->id }}').submit();
+                                }
+                            });
+                        });
+                    </script>
                 @endforeach
             @else
                 <tr>
