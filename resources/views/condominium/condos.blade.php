@@ -24,14 +24,15 @@
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2 first-item">
-                        
-                        
+                       <div class="container">
+                           @livewire('condos')
+                       </div>
                     </div>
                 </div>
             </div>
         </div>
 
-   
+
 
     @if(session('msg-success'))
         <script>
