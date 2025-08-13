@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Estoque;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class EstoqueController extends Controller
 {
@@ -29,7 +30,25 @@ class EstoqueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new Estoque();
+        $item->name = $request->name;
+        $item->quantity = $request->quantity;
+        $item->serialNumber = $request->serialNumber;
+
+        $request->validate([
+            'image' => 'required|image|max:2048', // 2MB
+        ]);
+
+        $file = $request->file('image');
+        $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('img'), $filename);
+
+        $item->image = 'img/'. $filename;
+        $item->save();
+
+        return redirect()
+            ->back()
+            ->with('msg-success', 'Item cadastrado com sucesso!');
     }
 
     /**

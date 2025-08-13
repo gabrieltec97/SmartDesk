@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('estoques', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('quantity');
+            $table->string('serialNumber')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

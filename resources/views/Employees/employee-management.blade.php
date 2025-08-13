@@ -81,7 +81,6 @@
                                                 });
                                             });
                                         </script>
-
                                     @endforeach
                                 </tbody>
                             </table>
