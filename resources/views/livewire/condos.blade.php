@@ -92,6 +92,22 @@
     </script>
 
     <script>
+        function playNotif(message){
+        const notyf = new Notyf({
+            position: {
+                x: 'right',
+                y: 'top',
+            }
+        });
+
+        notyf
+            .error({
+                message: message,
+                dismissible: true,
+                duration: 5000
+            })
+    }
+
         document.getElementById('editCondo{{$condo->id}}').addEventListener('click', function () {
         const button = this;
         const text = button.querySelector('.button-text');
