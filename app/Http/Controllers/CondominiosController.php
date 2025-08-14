@@ -7,25 +7,11 @@ use Illuminate\Http\Request;
 
 class CondominiosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('condominium.condos');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $condominium = new Condominios();
@@ -38,9 +24,6 @@ class CondominiosController extends Controller
             ->with('msg-success', 'Condomínio cadastrado com sucesso!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Condominios $condominio)
     {
         $condominio->name = $request->name;
@@ -52,9 +35,6 @@ class CondominiosController extends Controller
             ->with('msg-success', 'Alterações realizadas com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Condominios $condominio)
     {
         $condominio->delete();
