@@ -9,9 +9,6 @@ use Illuminate\Support\Str;
 
 class EstoqueController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('stock.stock-management');
@@ -30,7 +27,7 @@ class EstoqueController extends Controller
         }
 
         $request->validate([
-            'image' => 'required|image|max:2048', // 2MB
+            'image' => 'required|image|max:2048',
         ]);
 
         $file = $request->file('image');
@@ -45,25 +42,6 @@ class EstoqueController extends Controller
             ->with('msg-success', 'Item cadastrado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Estoque $estoque)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Estoque $estoque)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Estoque $estoque)
     {
         $estoque->name = $request->name;
@@ -96,9 +74,6 @@ class EstoqueController extends Controller
         return redirect()->back()->with('msg-success', 'Item atualizado com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Estoque $estoque)
     {
         if ($estoque->image) {
