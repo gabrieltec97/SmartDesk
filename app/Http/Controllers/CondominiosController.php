@@ -39,27 +39,17 @@ class CondominiosController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Condominios $condominios)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Condominios $condominios)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Condominios $condominios)
+    public function update(Request $request, Condominios $condominio)
     {
-        //
+        $condominio->name = $request->name;
+        $condominio->location = $request->city;
+        $condominio->save();
+
+        return redirect()
+            ->back()
+            ->with('msg-success', 'Alterações realizadas com sucesso!');
     }
 
     /**
@@ -67,6 +57,9 @@ class CondominiosController extends Controller
      */
     public function destroy(Condominios $condominios)
     {
-        //
+        $condominios->delete();
+        return redirect()
+            ->back()
+            ->with('msg-success', 'Condomínio deletado com sucesso!');
     }
 }

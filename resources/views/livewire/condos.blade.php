@@ -38,12 +38,12 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Novo condomínio</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Edição de condomínio</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('condominios.update', $condo->id) }}" id="edit-condosForm" method="post">
+                    <form action="{{ route('condominios.update', $condo->id)}}" id="edit-condosForm{{$condo->id}}" method="post">
                         @csrf
-                        @METHOD('PATCH')
+                        @METHOD('PUT')
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <label class="format-label">Nome</label>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark modal-format"  data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary modal-format" id="editCondo">
+                    <button type="button" class="btn btn-primary modal-format" id="editCondo{{$condo->id}}">
                         <span class="button-text"><i class="fa-solid fa-circle-check icon-format"></i> Salvar alterações</span>
                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                     </button>
@@ -66,6 +66,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('editCondo{{$condo->id}}').addEventListener('click', function () {
+        const button = this;
+        const text = button.querySelector('.button-text');
+        const spinner = button.querySelector('.spinner-border');
+        const form = document.getElementById('edit-condosForm{{$condo->id}}');
+
+        const name = document.getElementById('edit-c-name').value;
+        const city = document.getElementById('edit-c-city').value;
+
+        if (name == ''){
+            message = 'Preencha corretamente o nome do condomínio';
+            playNotif(message);
+        }else if(city == ''){
+            message = 'Preencha corretamente a cidade do condomínio';
+            playNotif(message);
+        }else{
+            text.classList.add('d-none');
+            spinner.classList.remove('d-none');
+            form.submit();
+        }
+    });
+    </script>
                 @endforeach
             @else
                 <tr>
