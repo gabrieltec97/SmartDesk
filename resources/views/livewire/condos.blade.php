@@ -41,7 +41,7 @@
                     <h5 class="modal-title" id="exampleModalLongTitle">Novo condomínio</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('condominios.update', $condo->id) }}" id="condosForm" method="post">
+                    <form action="{{ route('condominios.update', $condo->id) }}" id="edit-condosForm" method="post">
                         @csrf
                         @METHOD('PATCH')
                         <div class="row">
@@ -51,7 +51,7 @@
                             </div>
                             <div class="col-12 col-md-6 mt-3 mt-md-0">
                                 <label class="format-label">Localização</label>
-                                <input type="text" class="form-control text-black" name="edit-c-city" value="{{ $condo->location }}" id="city" autocomplete="off">
+                                <input type="text" class="form-control text-black" name="city" value="{{ $condo->location }}" id="edit-c-city" autocomplete="off">
                             </div>
                         </div>
                     </form>

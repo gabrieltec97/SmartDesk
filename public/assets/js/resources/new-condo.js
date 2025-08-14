@@ -36,4 +36,26 @@ document.addEventListener('DOMContentLoaded', function () {
             form.submit();
         }
     });
+
+    document.getElementById('editCondo').addEventListener('click', function () {
+        const button = this;
+        const text = button.querySelector('.button-text');
+        const spinner = button.querySelector('.spinner-border');
+        const form = document.getElementById('edit-condosForm');
+
+        const name = document.getElementById('edit-c-name').value;
+        const city = document.getElementById('edit-c-city').value;
+
+        if (name == ''){
+            message = 'Preencha corretamente o nome do condomínio';
+            playNotif(message);
+        }else if(city == ''){
+            message = 'Preencha corretamente a cidade do condomínio';
+            playNotif(message);
+        }else{
+            text.classList.add('d-none');
+            spinner.classList.remove('d-none');
+            form.submit();
+        }
+    });
 });
