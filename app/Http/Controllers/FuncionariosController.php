@@ -8,9 +8,6 @@ use Illuminate\Http\Request;
 
 class FuncionariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $employees = Funcionarios::all();
@@ -19,17 +16,6 @@ class FuncionariosController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $employee = new Funcionarios();
@@ -40,33 +26,11 @@ class FuncionariosController extends Controller
         return redirect()->back()->with('msg-success', 'Funcionário cadastrado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Funcionarios $funcionarios)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Funcionarios $funcionarios)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Funcionarios $funcionarios)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Funcionarios $funcionario)
     {
         try {
