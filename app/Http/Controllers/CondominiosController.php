@@ -55,9 +55,9 @@ class CondominiosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Condominios $condominios)
+    public function destroy(Condominios $condominio)
     {
-        $condominios->delete();
+        $condominio->delete();
         return redirect()
             ->back()
             ->with('msg-success', 'Condomínio deletado com sucesso!');

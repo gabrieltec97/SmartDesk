@@ -28,7 +28,7 @@
 
                         <td class="align-middle">
                             <span class="text-primary cursor-pointer" data-bs-toggle="modal" data-bs-target="#edit-condo{{$condo->id}}" title="Editar dados cadastrais"><i class="fa-solid fa-pen-to-square"></i></span>
-                            <span class="text-danger cursor-pointer" title="Deletar condomínio" style="margin-left: 10px !important;"><i class="fa-solid fa-trash"></i></span>
+                            <span class="text-danger cursor-pointer" id="delete{{ $condo->id }}" title="Deletar condomínio" style="margin-left: 10px !important;"><i class="fa-solid fa-trash"></i></span>
                         </td>
                     </tr>
 
@@ -66,6 +66,30 @@
             </div>
         </div>
     </div>
+
+    <form id="form-delete-{{ $condo->id }}" action="{{ route('condominios.destroy', $condo->id) }}" method="POST" style="display: none;">
+        @csrf
+        @method('DELETE')
+    </form>
+
+    <script>
+        const btnAlert{{ $condo->id }} = document.querySelector('#delete{{ $condo->id }}');
+        btnAlert{{ $condo->id }}.addEventListener('click', function () {
+            Swal.fire({
+                html: `Deseja excluir o item <b>{{ $condo->name }}</b>?`,
+                icon: "question",
+                showCancelButton: true,
+                cancelButtonText: 'Voltar',
+                confirmButtonText: 'Excluir',
+                confirmButtonColor: '#F97316',
+                focusCancel: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('form-delete-{{ $condo->id }}').submit();
+                }
+            });
+        });
+    </script>
 
     <script>
         document.getElementById('editCondo{{$condo->id}}').addEventListener('click', function () {
