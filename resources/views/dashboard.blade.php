@@ -16,18 +16,10 @@
                                         <i class="fa-solid fa-box-open text-dark dash-icon"></i>
                                     </div>
                                     <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                                        @if ($totalReceivedToday == 1)
-                                            {{ $totalReceivedToday }} Entrega
-                                        @else
-                                            {{ $totalReceivedToday }} Entregas
-                                        @endif
+                                        Retiradas
                                     </h5>
                                     <span class="text-white text-sm">
-                                         @if ($totalReceivedToday == 1)
-                                            Recebida hoje
-                                        @else
-                                            Recebidas hoje
-                                        @endif
+                                        Hoje
                                     </span>
                                 </div>
                             </div>
@@ -44,19 +36,10 @@
                                         <i class="fa-regular fa-thumbs-up text-dark dash-icon"></i>
                                     </div>
                                     <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                                        @if ($totalTakenToday == 1)
-                                            {{ $totalTakenToday }} Retirada
-                                        @else
-                                            {{ $totalTakenToday }} Retiradas
-                                        @endif
+                                       Retiradas
                                     </h5>
                                     <span class="text-white text-sm">
-                                         @if ($totalTakenToday == 1)
-                                            Realizada hoje
-                                        @else
-                                            Realizadas hoje
-                                        @endif
-
+                                         este mês
                                     </span>
                                 </div>
                             </div>
@@ -88,7 +71,7 @@
                 <div class="card-header pb-0">
                     <div class="row">
                         <div class="col-12 title-format">
-                            <h5>Unidades com mais entregas</h5>
+                            <h5>Condomínios com mais ocorrências</h5>
                             <p class="text-sm mb-0 dashboard-legend">
                                 <i class="fa fa-check text-info" aria-hidden="true"></i>
                                 <span class="font-weight-bold ms-1">Recebimento x Retirada</span> no mês atual
@@ -101,53 +84,42 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Unidade</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Recebido</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Retirado</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Taxa de retirada</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Condomínio</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ocorrências</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Taxa de ocorrência</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($count as $unit)
-                                <tr>
+                           <tr>
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">{{ $unit['unit'] }}</h6>
+                                                <h6 class="mb-0 text-sm">2</h6>
                                             </div>
                                         </div>
                                     </td>
+
                                     <td>
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-sm">
-                                                    @if ( $unit['total'] == 0 ||  $unit['total'] == 1)
-                                                        {{ $unit['total'] }} entrega
-                                                    @else
-                                                        {{ $unit['total'] }} entregas
-                                                    @endif
+                                                   entrega
                                                 </h6>
                                             </div>
                                         </div>
                                     </td>
-                                    <!-- Retirado -->
-                                    <td class="align-middle text-center">
-                                        <h6 class="mb-0 text-sm">
-                                            {{ $unit['pickedUp'] }} {{ $unit['pickedUp'] == 1 ? 'retirada' : 'retiradas' }}
-                                        </h6>
-                                    </td>
+                            
                                     <td class="align-middle text-center">
                                         <div class="progress-wrapper w-75 mx-auto">
                                             <div class="progress-info">
                                                 <div class="progress-percentage">
-                                                    <span class="text-xs font-weight-bold">{{ $unit['percent'] }}%</span>
-                                                    <div class="progress-bar bg-gradient-info w-{{ $unit['percent'] }}" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <span class="text-xs font-weight-bold">10%</span>
+                                                    <div class="progress-bar bg-gradient-info w-75" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -167,57 +139,10 @@
                     <div class="timeline timeline-one-side dashboard-legend">
                         <div class="timeline-block mb-3">
                             <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">{{ $total }} Entregas recebidas</h6>
+                                <h6 class="text-dark text-sm font-weight-bold mb-0"> Equipamentos mais utilizados</h6>
                                 <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">
-                                    @if ($resume == 0 || $resume == 1)
-                                        {{ $resume }} Recebida com observação
-                                    @else
-                                        {{ $resume }} Recebidas com observações
-                                    @endif
+                                   Recebida com observação
                                 </p>
-                            </div>
-                        </div>
-                        <div class="timeline-block mb-3">
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">
-                                    @if ($totalWithdrawn == 0 || $totalWithdrawn == 1)
-                                        {{ $totalWithdrawn }} Entrega retirada
-                                    @else
-                                        {{ $totalWithdrawn }} Entregas retiradas
-                                    @endif
-                                </h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">
-                                    @if ($totalOthers == 0 || $totalOthers == 1)
-                                        {{ $totalOthers }} Retirada por terceiros
-                                    @else
-                                        {{ $totalOthers }} Retiradas por terceiros
-                                    @endif
-                                </p>
-                            </div>
-                        </div>
-                        <div class="timeline-block mb-3">
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">
-                                    @if ($waiting == 0 || $waiting == 1)
-                                        {{ $waiting }} Entrega aguardando retirada
-                                    @else
-                                        {{ $waiting }} Entregas aguardando retirada
-                                    @endif
-
-                                </h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Pelo proprietário ou terceiros</p>
-                            </div>
-                        </div>
-                        <div class="timeline-block mb-3">
-                            <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0">
-                                    @if ($cancelled == 1)
-                                        {{ $cancelled }} entrega cancelada
-                                    @else
-                                        {{ $cancelled }} entregas canceladas
-                                    @endif
-                                </h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Via administrativo</p>
                             </div>
                         </div>
                     </div>
@@ -244,117 +169,6 @@
         </div>
     </div>
     <script src="../assets/js/plugins/chartjs.min.js"></script>
-
-    <script>
-        var dataTotal = <?php echo json_encode($dataTotal); ?>;
-        var dataTaken = <?php echo json_encode($dataTaken); ?>;
-
-        var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-        var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-        gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-        var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-        gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-        gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-        new Chart(ctx2, {
-            type: "line",
-            data: {
-                labels: [
-                    "Janeiro", "Fevereiro", "Março", "Abril", "Maio",
-                    "Junho", "Julho", "Agosto", "Setembro", "Outubro",
-                    "Novembro", "Dezembro"
-                ],
-                datasets: [{
-                    label: "Entregas recebidas",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    borderColor: "#cb0c9f",
-                    borderWidth: 3,
-                    backgroundColor: gradientStroke1,
-                    fill: true,
-                    data: dataTotal,
-                    maxBarThickness: 6
-
-                },
-                    {
-                        label: "Entregas retiradas",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        pointRadius: 0,
-                        borderColor: "#0f2eda",
-                        borderWidth: 3,
-                        backgroundColor: gradientStroke2,
-                        fill: true,
-                        data: dataTaken,
-                        maxBarThickness: 6
-                    },
-                ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#b2b9bf',
-                            font: {
-                                size: 11,
-                                family: "Inter",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#b2b9bf',
-                            padding: 20,
-                            font: {
-                                size: 11,
-                                family: "Inter",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
-            },
-        });
-    </script>
 
     <link rel="stylesheet" href="{{ asset('assets/css/responsivity.css') }}">
 @endsection
