@@ -1,10 +1,10 @@
 ## 📘 Descrição
 
-O SmartDesk é um sistema de gerenciamento de estoque que permite controlar e rastrear para qual condomínio irá cada item do estoque juntamente com seu técnico responsável, onde é possível:
+O SmartDesk é um sistema de gerenciamento de estoque que permite controlar e rastrear para qual condomínio irá cada item do estoque juntamente com seu técnico responsável, sendo suas principais funcionalidades:
 
-- Registrar condomínios e itens de estoque com informações detalhadas.
+- Registro de condomínios e itens de estoque com informações detalhadas.
 
-- Registrar retiradas com a assinatura do técnico responsável, condomínio destinatário, foto e listagem dos itens retirados.
+- Registro de retiradas com a assinatura do técnico responsável, condomínio destinatário, foto e listagem dos itens retirados.
 
 - Dashboard com informações de quantas retiradas foram feitas no mês, qual condomínio teve mais ocorrência e quais itens mais saem do estoque.
 
