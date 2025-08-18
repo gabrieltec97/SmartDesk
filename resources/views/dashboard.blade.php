@@ -33,7 +33,7 @@
                             <div class="row">
                                 <div class="col-8 text-start">
                                     <div class="icon icon-shape bg-white shadow text-center border-radius-2xl">
-                                        <i class="fa-regular fa-thumbs-up text-dark dash-icon"></i>
+                                        <i class="fa-solid fa-calendar-week text-dark dash-icon"></i>
                                     </div>
                                     <h5 class="text-white font-weight-bolder mb-0 mt-3">
                                        Retiradas
