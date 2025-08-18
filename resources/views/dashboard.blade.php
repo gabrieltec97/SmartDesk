@@ -52,10 +52,10 @@
         <div class="col-lg-12">
             <div class="card z-index-2">
                 <div class="card-header pb-0 title-format">
-                    <h5>Resumo de entregas</h5>
+                    <h5>Resumo de ocorrências</h5>
                     <p class="text-sm dashboard-legend">
                         <i class="fa fa-arrow-up text-success"></i>
-                        <span class="font-weight-bold">Métricas ao longo</span> {{ date("Y") }}
+                        <span class="font-weight-bold">Métricas ao longo de {{ date("Y") }}</span> 
                 </div>
                 <div class="card-body p-3">
                     <div class="chart">
