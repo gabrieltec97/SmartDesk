@@ -166,6 +166,17 @@
                             </div>
                         </a>
                     </li>
+
+                    <li class="nav-item desktop-retract d-flex no-mobile align-items-center">
+                        <a href="javascript:;" id="sidenavToggle" class="nav-link text-body p-0">
+                            <div class="sidenav-toggler-inner">
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                            </div>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>
@@ -203,6 +214,24 @@
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
 @livewireScripts
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sidenavToggle = document.getElementById("sidenavToggle");
+        const body = document.body;
+
+        sidenavToggle.addEventListener("click", function () {
+            if (body.classList.contains("g-sidenav-hidden")) {
+                body.classList.remove("g-sidenav-hidden");
+                body.classList.add("g-sidenav-pinned");
+            } else {
+                body.classList.remove("g-sidenav-pinned");
+                body.classList.add("g-sidenav-hidden");
+            }
+        });
+    });
+</script>
+
 </body>
 
 </html>

@@ -1,4 +1,3 @@
-/* Extra small (máximo 575px) */
 @media (max-width: 575px) {
     .no-mobile
     {
@@ -66,17 +65,17 @@
     }
 }
 
-/* Small (de 576px até 767px) */
 @media (min-width: 576px) and (max-width: 767px) {
 
 }
 
-/* Medium (de 768px até 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
-    /* estilos para tablets */
+    .no-mobile
+    {
+        display: none !important;
+    }
 }
 
-/* Large (de 992px até 1199px) */
 @media (min-width: 992px){
     .field-modal-format
     {
