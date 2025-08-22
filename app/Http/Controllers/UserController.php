@@ -28,18 +28,17 @@ class UserController extends Controller
         return response()->json(['exists' => $exists]);
     }
 
-    public function store(StoreUserRequest $request)
+    public function store(Request $request)
     {
-        $user = User::create([
-            'profile' => $request->profile,
-            'name' => $request->name,
-            'surname' => $request->secondName,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-
-        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->surname = $request->secondName;
+        $user->email = $request->email;
+        $user->profile = $request->profile;
+        $user->password = Hash::make($request->password);
 
         $user->assignRole($request->profile);
+        $user->save();
         return redirect()->back()->with('msg-success', 'Usuário cadastrado com sucesso!');
     }
 

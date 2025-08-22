@@ -63,7 +63,8 @@
                                             @method('DELETE')
                                         </form>
 
-                                        <script>
+                                        @if ($user->id != 1)
+                                            <script>
                                             const btnAlert{{ $user->id }} = document.querySelector('#delete{{ $user->id }}');
                                             btnAlert{{ $user->id }}.addEventListener('click', function () {
                                                 Swal.fire({
@@ -81,6 +82,7 @@
                                                 });
                                             });
                                         </script>
+                                        @endif
 
                                     @endforeach
                                 </tbody>
@@ -91,7 +93,7 @@
             </div>
         </div>
 
-    <!-- Modal de blocos-->
+    <!-- Modal de usuários-->
     <div class="modal fade" id="new-block" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -130,7 +132,7 @@
 
                                 <div class="col-12 col-lg-12 mt-3">
                                     <span class="font-weight-bold modal-label">Perfil:</span>
-                                    <select name="profile" id="profile" class="form-control input-format mt-2">
+                                    <select name="profile" id="sector" class="form-control input-format mt-2">
                                         <option value="selecione" disabled selected>Selecione</option>
                                         <option value="Administrador">Administrador</option>
                                         <option value="Operador">Operador</option>
