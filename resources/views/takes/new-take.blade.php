@@ -36,10 +36,12 @@
                             <div class="col-12 title-format">
                                 <h5 class="mb-0">Equipamentos selecionados:</h5>
                                 <select name="" id="" class="form-control mt-2">
-                                    <option value="">Rosa Silvestre</option>
+                                    <option value="Selecione" selected disabled>Selecione</option>
+                                    @foreach ($condos as $condo)
+                                        <option value="{{ $condo->name }}">{{ $condo->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
-
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2 first-item">

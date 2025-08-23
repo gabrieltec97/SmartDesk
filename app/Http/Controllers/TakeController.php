@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Condominios;
 use App\Models\take;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,10 @@ class TakeController extends Controller
      */
     public function create()
     {
-        return view('takes.new-take');
+        $condos = Condominios::all();
+        return view('takes.new-take', [
+            'condos' => $condos
+        ]);
     }
 
     /**
