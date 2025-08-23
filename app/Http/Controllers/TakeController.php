@@ -20,7 +20,7 @@ class TakeController extends Controller
      */
     public function create()
     {
-        //
+        return view('takes.new-take');
     }
 
     /**
