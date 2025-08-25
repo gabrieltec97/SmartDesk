@@ -16,10 +16,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.getElementById('register').addEventListener('click', function () {
+        const form = document.getElementById('user-form');
         const button = this;
+
+        employee(form, button);
+    });
+
+    document.getElementById('save').addEventListener('click', function () {
+        const formEdit = document.getElementById('edit-form');
+        const buttonEdit = this;
+
+        employee(formEdit, buttonEdit);
+    });
+
+    function employee(form, button){
+
         const text = button.querySelector('.button-text');
         const spinner = button.querySelector('.spinner-border');
-        const form = document.getElementById('user-form');
 
         const name = document.getElementById('name').value;
         const sector = document.getElementById('sector').value;
@@ -35,5 +48,5 @@ document.addEventListener('DOMContentLoaded', function () {
             spinner.classList.remove('d-none');
             form.submit();
         }
-    });
+    }
 });

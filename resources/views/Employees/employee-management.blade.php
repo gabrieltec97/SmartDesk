@@ -19,7 +19,7 @@
 
                             <!-- Coluna dos botões -->
                             <div class="col-md-6 col-12 d-flex justify-content-center justify-content-lg-end gap-2 mt-2 mt-md-0">
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-block"><i class="fa-solid fa-user-plus icon-format"></i> Novo funcionário</button>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-employee"><i class="fa-solid fa-user-plus icon-format"></i> Novo funcionário</button>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                                             </td>
 
                                             <td class="align-middle text-center text-sm">
-                                                <a href="{{ route('funcionarios.show', $employee->id) }}"><i class="fa-solid fa-user-pen cursor-pointer maintence-icon"></i></a>
+                                                <i class="fa-solid fa-user-pen cursor-pointer maintence-icon" data-bs-toggle="modal" data-bs-target="#employee-edit{{ $employee->id }}"></i>
                                                 <i class="fa-solid fa-trash cursor-pointer text-danger" id="delete{{$employee->id}}"></i>
                                             </td>
                                         </tr>
@@ -81,6 +81,48 @@
                                                 });
                                             });
                                         </script>
+
+                                        <!-- Modal de edição de funcionário-->
+                                        <div class="modal fade" id="employee-edit{{ $employee->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header d-flex">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Editar funcionário</h5>
+                                                        <i class="fa-solid fa-circle-xmark text-danger ms-auto cursor-pointer" data-bs-dismiss="modal"></i>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container-fluid">
+                                                            <form action="{{ route('funcionarios.update', $employee->id) }}" method="post" id="edit-form">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <span class="font-weight-bold modal-label">Nome:</span>
+                                                                        <input type="text" id="name" name="name" value="{{ $employee->name }}" class="form-control input-format mt-2">
+                                                                    </div>
+
+                                                                    <div class="col-12 mt-3">
+                                                                        <span class="font-weight-bold modal-label">Setor:</span>
+                                                                        <select name="sector" id="sector" class="form-control input-format mt-2 cursor-pointer">
+                                                                            <option value="selecione" disabled {{ $employee->sector ? '' : 'selected' }}>Selecione</option>
+                                                                            <option value="Área Técnica" {{ $employee->sector == 'Área Técnica' ? 'selected' : '' }}>Área Técnica</option>
+                                                                            <option value="Gestão" {{ $employee->sector == 'Gestão' ? 'selected' : '' }}>Gestão</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer format-footer">
+                                                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Fechar</button>
+                                                        <button type="button" class="btn btn-primary" id="save">
+                                                            <span class="button-text"><i class="fa-solid fa-circle-check icon-format"></i> Salvar alterações</span>
+                                                            <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -90,8 +132,8 @@
             </div>
         </div>
 
-        <!-- Modal de blocos-->
-    <div class="modal fade" id="new-block" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <!-- Modal de novo funcionário-->
+    <div class="modal fade" id="new-employee" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header d-flex">
