@@ -188,5 +188,5 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsivity.css') }}">
-    <script src="{{ asset('assets/js/resources/new-user.js') }}"></script>
+    <script src="{{ asset('assets/js/resources/new-employee.js') }}"></script>
 @endsection
