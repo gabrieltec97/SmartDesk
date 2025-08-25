@@ -92,7 +92,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="container-fluid">
-                                                            <form action="{{ route('funcionarios.update', $employee->id) }}" method="post" id="edit-form">
+                                                            <form action="{{ route('funcionarios.update', $employee->id) }}" method="post" id="edit-form{{ $employee->id }}">
                                                                 @csrf
                                                                 @method('PUT')
                                                                 <div class="row">
@@ -115,7 +115,7 @@
                                                     </div>
                                                     <div class="modal-footer format-footer">
                                                         <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Fechar</button>
-                                                        <button type="button" class="btn btn-primary" id="save">
+                                                        <button type="button" class="btn btn-primary" id="save-edit{{ $employee->id }}">
                                                             <span class="button-text"><i class="fa-solid fa-circle-check icon-format"></i> Salvar alterações</span>
                                                             <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                                                         </button>
@@ -123,6 +123,31 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <script>
+                                            document.getElementById('save-edit{{ $employee->id }}').addEventListener('click', function () {
+                                                const button = this;
+                                                const form = document.getElementById('edit-form{{ $employee->id }}');
+
+                                                const text = button.querySelector('.button-text');
+                                                const spinner = button.querySelector('.spinner-border');
+
+                                                const name = document.getElementById('name').value;
+                                                const sector = document.getElementById('sector').value;
+
+                                                if (name == ''){
+                                                    message = 'Preencha corretamente o nome e sobrenome';
+                                                    playNotif(message);
+                                                }else if(sector == 'selecione'){
+                                                    message = 'Escolha um sector para este usuário';
+                                                    playNotif(message);
+                                                }else{
+                                                    text.classList.add('d-none');
+                                                    spinner.classList.remove('d-none');
+                                                    form.submit();
+                                                }
+                                            });
+                                        </script>
                                     @endforeach
                                 </tbody>
                             </table>
