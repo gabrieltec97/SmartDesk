@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link sizes="76x76" href="../assets/img/e-locker.png">
-    <link rel="icon" type="image/png" href="../assets/img/e-locker.png">
+    <link sizes="76x76" href="../assets/img/porter.jpg">
+    <link rel="icon" type="image/png" href="../assets/img/porter.jpg">
     <title>
         @yield('title')
     </title>
