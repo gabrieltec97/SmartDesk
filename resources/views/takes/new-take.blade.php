@@ -35,7 +35,7 @@
                             <!-- Coluna do título -->
                             <div class="col-12 title-format">
                                 <h5 class="mb-0">Equipamentos selecionados:</h5>
-                                <select name="" id="" class="form-control mt-2">
+                                <select name="condo" id="" class="form-control mt-2">
                                     <option value="Selecione" selected disabled>Selecione</option>
                                     @foreach ($condos as $condo)
                                         <option value="{{ $condo->name }}">{{ $condo->name }}</option>

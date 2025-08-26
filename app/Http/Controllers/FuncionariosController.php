@@ -11,7 +11,7 @@ class FuncionariosController extends Controller
     public function index()
     {
         $employees = Funcionarios::all();
-        return view('Employees.employee-management', [
+        return view('employee-management', [
             'employees' => $employees
         ]);
     }
