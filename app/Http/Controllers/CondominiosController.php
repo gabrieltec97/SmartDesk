@@ -9,7 +9,7 @@ class CondominiosController extends Controller
 {
     public function index()
     {
-        return view('condominium.condos');
+        return view('condos');
     }
 
     public function store(Request $request)
