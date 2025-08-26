@@ -11,7 +11,7 @@ class EstoqueController extends Controller
 {
     public function index()
     {
-        return view('stock.stock-management');
+        return view('stock-management');
     }
 
     public function store(Request $request)
