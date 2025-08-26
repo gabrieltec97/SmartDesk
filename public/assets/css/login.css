@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(135deg, #27272a, #f97316);
+    background: linear-gradient(135deg, #e9e3e3, #2356A5);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -22,8 +22,8 @@ body {
 }
 
 .btn-primary {
-    background-color: #f97316;
-    border-color: #f97316;
+    background-color: #2356A5;
+    border-color: #2356A5;
     font-weight: bold !important;
 }
 
@@ -46,6 +46,7 @@ a {
 .img-format
 {
     width: 100px;
-    height: 90px;
+    height: 95px;
+    border-radius: 20px;
 }
 
