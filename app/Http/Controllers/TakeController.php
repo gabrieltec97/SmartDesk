@@ -34,12 +34,9 @@ class TakeController extends Controller
      */
     public function addItem(Request $request)
     {
-        // No seu controlador
         $validatedData = $request->validate([
             'take_id' => 'required',
             'item' => 'required|string',
-            'quantity' => 'required', // Remova a regra 'integer'
-            'condominium' => 'required|string',
         ]);
 
         try {
@@ -50,7 +47,7 @@ class TakeController extends Controller
                 DB::table('take_items')->insert([
                     'take_id' => $validatedData['take_id'],
                     'item' => $validatedData['item'],
-                    'quantity' => '1', // Use a variável convertida
+                    'quantity' => '1',
                     'condominium' => $validatedData['condominium'],
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -60,12 +57,11 @@ class TakeController extends Controller
                     ->update(['quantity' => $quantity[0]->quantity + 1]);
             }
 
-            // Retorna uma resposta de sucesso
             return response()->json(['message' => 'Item adicionado com sucesso!'], 201);
         } catch (\Exception $e) {
-            // Loga o erro para depuração
-            \Log::error('Erro ao adicionar item à lista de retirada: ' . $e->getMessage());
-            // Retorna uma resposta de erro
+
+            Log::error('Erro ao adicionar item à lista de retirada: ' . $e->getMessage());
+
             return response()->json(['error' => 'Erro interno do servidor.'], 500);
         }
     }
