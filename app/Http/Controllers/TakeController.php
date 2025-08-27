@@ -45,7 +45,10 @@ class TakeController extends Controller
         try {
             $count = DB::table('take_items')->where('item', $validatedData['item'])->count();
 
-            if ($count == 0){
+            if ($count >= 1){
+                DB::table('take_items')->where('item', $validatedData['item'])
+                    ->update(['quantity' => $count + 1]);
+            }else{
                 DB::table('take_items')->insert([
                     'take_id' => $validatedData['take_id'],
                     'item' => $validatedData['item'],
@@ -54,9 +57,6 @@ class TakeController extends Controller
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
-            }else{
-                DB::table('take_items')->where('item', $validatedData['item'])
-                    ->update(['quantity' => $count + 1]);
             }
             // Retorna uma resposta de sucesso
             return response()->json(['message' => 'Item adicionado com sucesso.'], 201);

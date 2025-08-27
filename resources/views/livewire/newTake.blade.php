@@ -96,7 +96,19 @@
                             return response.json();
                         })
                         .then(data => {
-                            alert(data.message);
+                            const notyf = new Notyf({
+                                position: {
+                                    x: 'right',
+                                    y: 'top',
+                                }
+                            });
+
+                            notyf
+                                .success({
+                                    message: data.message,
+                                    dismissible: true,
+                                    duration: 5000
+                                });
                         })
                         .catch(error => {
                             console.error('Erro:', error.message);
@@ -106,6 +118,4 @@
             });
         });
     </script>
-
-
 </div>
