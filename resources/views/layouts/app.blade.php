@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script src="{{ asset('assets/js/signature/signature.js') }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @livewireStyles
 </head>
 <body class="g-sidenav-show  bg-gray-100">

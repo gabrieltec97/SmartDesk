@@ -43,8 +43,12 @@
                         </td>
 
                         <td class="align-middle">
-                            <span class="text-primary cursor-pointer font-weight-bold" data-bs-toggle="modal" data-bs-target="#edit-item{{$item->id}}" title="Adicionar à lista">
-                                <i class="fa-solid fa-circle-plus addToTake"></i>
+                            <span class="text-primary cursor-pointer font-weight-bold addToTake"
+                                  data-item-id="{{ $item->id }}"
+                                  data-item-quantity="{{ $item->quantity }}"
+                                  data-item-name="{{ $item->name }}"
+                                  title="Adicionar à lista">
+                                <i class="fa-solid fa-circle-plus"></i>
                             </span>
                         </td>
                     </tr>
@@ -57,4 +61,51 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const addToTakeButtons = document.querySelectorAll('.addToTake');
+
+            addToTakeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Obtém os dados do HTML
+                    const itemId = this.getAttribute('data-item-id');
+                    const itemQuantity = this.getAttribute('data-item-quantity');
+                    const itemName = this.getAttribute('data-item-name'); // <--- Captura o nome aqui
+
+                    const data = {
+                        take_id: 1, // Exemplo de ID da retirada
+                        item: itemName, // <--- Envia o nome em vez do ID
+                        quantity: itemQuantity,
+                        condominium: 'Condomínio Exemplo',
+                    };
+
+                    fetch('{{ route('take-add') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Falha ao adicionar o item. Status: ' + response.status);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            alert(data.message);
+                        })
+                        .catch(error => {
+                            console.error('Erro:', error.message);
+                            alert('Erro ao adicionar o item: ' + error.message);
+                        });
+                });
+            });
+        });
+    </script>
+
+
 </div>

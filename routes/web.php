@@ -15,6 +15,8 @@ Route::get('/', function(){
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 Route::resource('/usuarios', UserController::class);
 Route::get('/verificar-email', [UserController::class, 'checkEmail']);
+Route::post('/take-items', [TakeController::class, 'addItem'])->name('take-add');
+
 
 Route::resource('estoque', EstoqueController::class);
 Route::resource('condominios', CondominiosController::class);

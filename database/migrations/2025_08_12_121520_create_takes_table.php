@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('takes', function (Blueprint $table) {
             $table->id();
             $table->string('os_id')->nullable();
+            $table->string('status');
             $table->string('condominium');
             $table->string('responsible');
             $table->string('technical');
