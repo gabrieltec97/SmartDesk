@@ -31,16 +31,9 @@
                 <div class="card">
                     <div class="card-header pb-0">
                         <div class="row">
-
                             <!-- Coluna do título -->
                             <div class="col-12 title-format">
                                 <h5 class="mb-0">Equipamentos selecionados:</h5>
-                                <select name="condo" id="" class="form-control mt-2 cursor-pointer">
-                                    <option value="Selecione" selected disabled>Selecione o condomínio</option>
-                                    @foreach ($condos as $condo)
-                                        <option value="{{ $condo->name }}">{{ $condo->name }}</option>
-                                    @endforeach
-                                </select>
                             </div>
                         </div>
                     </div>
