@@ -44,11 +44,9 @@ class TakeController extends Controller
 
         try {
             $count = DB::table('take_items')->where('item', $validatedData['item'])->count();
+            $quantity = DB::table('take_items')->where('item', $validatedData['item'])->get();
 
-            if ($count >= 1){
-                DB::table('take_items')->where('item', $validatedData['item'])
-                    ->update(['quantity' => $count + 1]);
-            }else{
+            if ($count == 0){
                 DB::table('take_items')->insert([
                     'take_id' => $validatedData['take_id'],
                     'item' => $validatedData['item'],
@@ -57,9 +55,13 @@ class TakeController extends Controller
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
+            }else{
+                DB::table('take_items')->where('item', $validatedData['item'])
+                    ->update(['quantity' => $quantity[0]->quantity + 1]);
             }
+
             // Retorna uma resposta de sucesso
-            return response()->json(['message' => 'Item adicionado com sucesso.'], 201);
+            return response()->json(['message' => 'Item adicionado com sucesso!'], 201);
         } catch (\Exception $e) {
             // Loga o erro para depuração
             \Log::error('Erro ao adicionar item à lista de retirada: ' . $e->getMessage());
