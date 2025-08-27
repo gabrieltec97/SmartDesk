@@ -148,13 +148,20 @@
     margin-left: 10px !important;
 }
 
-.g-sidenav-hidden .nav-link {
+.g-sidenav-hidden .nav-link
+{
     overflow: hidden;
     white-space: nowrap;
 }
 
-.g-sidenav-hidden .nav-link-text {
+.g-sidenav-hidden .nav-link-text
+{
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.3s, opacity 0.3s;
+}
+
+.addToTake
+{
+   font-size: 22px;
 }

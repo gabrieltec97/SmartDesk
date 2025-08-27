@@ -21,7 +21,7 @@
                     </div>
                     <div class="card-body px-0 pb-2 first-item">
                         <div class="container">
-                            @livewire('take')
+                            @livewire('newTake')
                         </div>
                     </div>
                 </div>
@@ -35,8 +35,8 @@
                             <!-- Coluna do título -->
                             <div class="col-12 title-format">
                                 <h5 class="mb-0">Equipamentos selecionados:</h5>
-                                <select name="condo" id="" class="form-control mt-2">
-                                    <option value="Selecione" selected disabled>Selecione</option>
+                                <select name="condo" id="" class="form-control mt-2 cursor-pointer">
+                                    <option value="Selecione" selected disabled>Selecione o condomínio</option>
                                     @foreach ($condos as $condo)
                                         <option value="{{ $condo->name }}">{{ $condo->name }}</option>
                                     @endforeach
@@ -46,14 +46,14 @@
                     </div>
                     <div class="card-body px-0 pb-2 first-item">
                         <div class="container">
-                           
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-   
+
 
     @if(session('msg-success'))
         <script>
