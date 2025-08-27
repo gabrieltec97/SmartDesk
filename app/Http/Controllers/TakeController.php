@@ -48,7 +48,7 @@ class TakeController extends Controller
                     'take_id' => $validatedData['take_id'],
                     'item' => $validatedData['item'],
                     'quantity' => '1',
-                    'condominium' => $validatedData['condominium'],
+                    'condominium' => 'teste',
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

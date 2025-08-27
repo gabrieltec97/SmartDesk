@@ -96,6 +96,7 @@
                             return response.json();
                         })
                         .then(data => {
+                            Livewire.dispatch('itemAdded');
                             const notyf = new Notyf({
                                 position: {
                                     x: 'right',
