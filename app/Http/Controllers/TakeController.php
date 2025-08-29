@@ -47,9 +47,9 @@ class TakeController extends Controller
             $take = new take();
             $take->os_id = null;
             $take->status = 'Em separação';
-            $take->condominium = ' ';
+            $take->condominium = 'À inserir';
             $take->responsible = $user;
-            $take->technical = 'ryan';
+            $take->technical = 'À inserir';
             $take->comments = 'teste ';
             $take->photo = 'sss';
             $take->save();
@@ -144,7 +144,7 @@ class TakeController extends Controller
     public function update(Request $request, $id)
     {
         $take = take::find($id);
-        $take->status = 'Finalizado';
+        $take->status = 'Entregue ao técnico';
         $take->condominium = $request->condo;
         $take->technical = $request->technical;
         $take->comments = $request->comments;

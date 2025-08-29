@@ -25,7 +25,7 @@
                     </div>
                     <div class="card-body px-0 pb-2 first-item">
                         <div class="container">
-                            @livewire('take')
+                            @livewire('takes')
                         </div>
                     </div>
                 </div>
