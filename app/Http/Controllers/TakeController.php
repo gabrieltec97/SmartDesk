@@ -60,9 +60,16 @@ class TakeController extends Controller
         ]);
 
         try {
-            $count = DB::table('take_items')->where('item', $validatedData['item'])->count();
-            $quantity = DB::table('take_items')->where('item', $validatedData['item'])->get();
-            $takeNumber = DB::table('takes')->where('status', 'Em separação')->get();
+            $takeNumber = DB::table('takes')
+                ->where('responsible', $user)
+                ->where('status', 'Em separação')->get();
+            $count = DB::table('take_items')
+                ->where('take_id', $takeNumber[0]->id)
+                ->where('item', $validatedData['item'])
+                ->count();
+            $quantity = DB::table('take_items')
+                ->where('take_id', $takeNumber[0]->id)
+                ->where('item', $validatedData['item'])->get();
 
             if ($count == 0){
                 DB::table('take_items')->insert([

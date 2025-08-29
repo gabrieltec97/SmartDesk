@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -25,7 +26,20 @@ class TakeItemsList extends Component
 
     public function loadTakeItems()
     {
-        // Use o Query Builder para buscar os itens da tabela take_items
-        $this->takeItems = DB::table('take_items')->get();
+        $user = Auth::user()->id;
+        $checkOs = DB::table('takes')
+            ->select('id')
+            ->where('status', 'Em separação')
+            ->where('responsible', $user)
+            ->get();
+
+        $id = 0;
+
+        if (isset($checkOs[0])){
+            $id = $checkOs[0]->id;
+        }
+
+        $this->takeItems = DB::table('take_items')
+            ->where('take_id', $id)->get();
     }
 }
