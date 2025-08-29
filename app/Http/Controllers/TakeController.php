@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Condominios;
+use App\Models\Estoque;
 use App\Models\Funcionarios;
 use App\Models\take;
 use Illuminate\Http\Request;
@@ -63,10 +64,12 @@ class TakeController extends Controller
             $takeNumber = DB::table('takes')
                 ->where('responsible', $user)
                 ->where('status', 'Em separação')->get();
+
             $count = DB::table('take_items')
                 ->where('take_id', $takeNumber[0]->id)
                 ->where('item', $validatedData['item'])
                 ->count();
+
             $quantity = DB::table('take_items')
                 ->where('take_id', $takeNumber[0]->id)
                 ->where('item', $validatedData['item'])->get();
@@ -146,6 +149,19 @@ class TakeController extends Controller
         $take->technical = $request->technical;
         $take->comments = $request->comments;
         $take->save();
+
+        $items = DB::table('take_items')
+            ->where('take_id', $take->id)->get();
+
+        foreach ($items as $item){
+            $item_id = DB::table('estoques')
+                ->select('id')
+                ->where('name', '=', $item->item)->get();
+
+            $product = Estoque::find($item_id[0]->id);
+            $product->quantity -= $item->quantity;
+            $product->save();
+        }
 
         return redirect()->route('retiradas.index')->with('msg-success', 'Retirada registrada com sucesso!');
     }
