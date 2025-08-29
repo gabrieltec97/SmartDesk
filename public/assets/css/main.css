@@ -165,3 +165,18 @@
 {
    font-size: 22px;
 }
+
+.take-format
+{
+    margin-bottom: -22px !important;
+}
+
+.txt-area-format
+{
+    resize: none;
+}
+
+.take-btn
+{
+    margin-bottom: 30px !important;
+}

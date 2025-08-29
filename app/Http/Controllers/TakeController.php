@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Condominios;
+use App\Models\Funcionarios;
 use App\Models\take;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -83,6 +84,26 @@ class TakeController extends Controller
             Log::error('Erro ao adicionar item à lista de retirada: ' . $e->getMessage());
             return response()->json(['error' => 'Erro interno do servidor.'], 500);
         }
+    }
+
+    public function finish()
+    {
+        $user = Auth::user()->id;
+        $condos = Condominios::all();
+        $technicals = Funcionarios::all();
+        $take = DB::table('takes')
+            ->select('id')
+            ->where('status', 'Em separação')
+            ->where('responsible', $user)->get();
+
+        $items = DB::table('take_items')
+            ->where('take_id', $take[0]->id)->get();
+
+       return view('takes.take-finish', [
+           'condos' => $condos,
+           'items' => $items,
+           'technicals' => $technicals
+       ]);
     }
 
 

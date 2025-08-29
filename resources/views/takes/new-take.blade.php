@@ -10,11 +10,8 @@
                         <div class="row">
 
                             <!-- Coluna do título -->
-                            <div class="col-md-6 col-12 title-format">
-                                <h5 class="mb-0">Retiradas</h5>
-                                <p class="text-sm mb-0">
-                                    <span class="font-weight-bold">Gerenciamento</span> completo
-                                </p>
+                            <div class="col-md-6 col-12 title-format take-format">
+                               <a href="{{ route('take-finish') }}" class="btn btn-primary"><i class="fa-solid fa-clipboard-check"></i> &nbsp;Finalizar retirada</a>
                             </div>
 
                         </div>
