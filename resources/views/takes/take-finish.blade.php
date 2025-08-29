@@ -15,7 +15,9 @@
                 </div>
                 <div class="card-body px-0 pb-2 first-item">
                     <div class="container">
-                        <form action="#">
+                        <form action="{{ route('retiradas.update', $id) }}" method="post">
+                            @csrf
+                            @method('PUT')
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <label class="format-label">Condomínio:</label>
@@ -29,7 +31,7 @@
 
                                 <div class="col-12 col-md-6">
                                     <label class="format-label">Técnico:</label>
-                                    <select name="condo" class="form-control">
+                                    <select name="technical" class="form-control">
                                         <option value="">Selecione</option>
                                         @foreach($technicals as $technical)
                                             <option value="{{ $technical->name }}">{{ $technical->name }}</option>
@@ -93,8 +95,6 @@
             </div>
         </div>
     </div>
-
-
 
     @if(session('msg-success'))
         <script>

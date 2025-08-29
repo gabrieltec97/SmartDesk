@@ -33,7 +33,6 @@
         </div>
 
 
-
     @if(session('msg-success'))
         <script>
             const notyf = new Notyf({

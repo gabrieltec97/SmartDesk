@@ -96,13 +96,18 @@ class TakeController extends Controller
             ->where('status', 'Em separação')
             ->where('responsible', $user)->get();
 
+        if (!isset($take[0])){
+            return redirect()->route('retiradas.index');
+        }
+
         $items = DB::table('take_items')
             ->where('take_id', $take[0]->id)->get();
 
        return view('takes.take-finish', [
            'condos' => $condos,
            'items' => $items,
-           'technicals' => $technicals
+           'technicals' => $technicals,
+           'id' => $take[0]->id
        ]);
     }
 
@@ -126,9 +131,16 @@ class TakeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, take $take)
+    public function update(Request $request, $id)
     {
-        //
+        $take = take::find($id);
+        $take->status = 'Finalizado';
+        $take->condominium = $request->condo;
+        $take->technical = $request->technical;
+        $take->comments = $request->comments;
+        $take->save();
+
+        return redirect()->route('retiradas.index')->with('msg-success', 'Retirada registrada com sucesso!');
     }
 
     /**
