@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Condominios;
 use App\Models\take;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -34,6 +35,24 @@ class TakeController extends Controller
      */
     public function addItem(Request $request)
     {
+        $user = Auth::user()->id;
+        $checkOs = DB::table('takes')
+            ->where('status', 'Em separação')
+            ->where('responsible', $user)
+            ->count();
+
+        if ($checkOs == 0){
+            $take = new take();
+            $take->os_id = null;
+            $take->status = 'Em separação';
+            $take->condominium = ' ';
+            $take->responsible = $user;
+            $take->technical = 'ryan';
+            $take->comments = 'teste ';
+            $take->photo = 'sss';
+            $take->save();
+        }
+
         $validatedData = $request->validate([
             'take_id' => 'required',
             'item' => 'required|string',
@@ -42,10 +61,11 @@ class TakeController extends Controller
         try {
             $count = DB::table('take_items')->where('item', $validatedData['item'])->count();
             $quantity = DB::table('take_items')->where('item', $validatedData['item'])->get();
+            $takeNumber = DB::table('takes')->where('status', 'Em separação')->get();
 
             if ($count == 0){
                 DB::table('take_items')->insert([
-                    'take_id' => $validatedData['take_id'],
+                    'take_id' => $takeNumber[0]->id,
                     'item' => $validatedData['item'],
                     'quantity' => '1',
                     'condominium' => 'teste',
@@ -61,7 +81,6 @@ class TakeController extends Controller
         } catch (\Exception $e) {
 
             Log::error('Erro ao adicionar item à lista de retirada: ' . $e->getMessage());
-
             return response()->json(['error' => 'Erro interno do servidor.'], 500);
         }
     }
