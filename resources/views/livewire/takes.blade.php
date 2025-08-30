@@ -28,7 +28,11 @@
                         </td>
 
                         <td class="align-middle">
-                            <h6 class="text-sm cursor-pointer">{{ $item->responsible }}</h6>
+                            @foreach ($users as $user)
+                                @if ($user->id == $item->responsible)
+                                    <h6 class="text-sm cursor-pointer">{{ $user->name }}</h6>
+                                @endif
+                            @endforeach
                         </td>
 
                         <td class="align-middle">
