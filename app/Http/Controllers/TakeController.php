@@ -98,7 +98,7 @@ class TakeController extends Controller
             ->where('responsible', $user)->get();
 
         if (!isset($take[0])){
-            return redirect()->route('retiradas.index');
+            return redirect()->back()->with('msg-error', 'É necessária a inserção de itens no pedido.');
         }
 
         $items = DB::table('take_items')

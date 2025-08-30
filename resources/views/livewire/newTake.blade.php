@@ -50,6 +50,14 @@
                                   title="Adicionar à lista">
                                 <i class="fa-solid fa-circle-plus"></i>
                             </span>
+
+                            <span class="text-danger cursor-pointer font-weight-bold addToTake"
+                                  data-item-id="{{ $item->id }}"
+                                  data-item-quantity="{{ $item->quantity }}"
+                                  data-item-name="{{ $item->name }}"
+                                  title="Remover da lista">
+                                <i class="fa-solid fa-circle-minus"></i>
+                            </span>
                         </td>
                     </tr>
                 @endforeach
