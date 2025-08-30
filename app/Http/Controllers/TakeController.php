@@ -13,17 +13,11 @@ use Illuminate\Support\Facades\Log;
 
 class TakeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view ('takes.takes-management');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $condos = Condominios::all();
@@ -32,9 +26,6 @@ class TakeController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function addItem(Request $request)
     {
         $user = Auth::user()->id;
@@ -121,26 +112,6 @@ class TakeController extends Controller
        ]);
     }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(take $take)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(take $take)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $take = take::find($id);
@@ -164,13 +135,5 @@ class TakeController extends Controller
         }
 
         return redirect()->route('retiradas.index')->with('msg-success', 'Retirada registrada com sucesso!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(take $take)
-    {
-        //
     }
 }
