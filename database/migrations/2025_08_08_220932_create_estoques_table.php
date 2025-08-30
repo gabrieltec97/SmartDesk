@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('quantity');
             $table->string('serialNumber')->nullable();
+            $table->string('status');
             $table->string('image')->nullable();
             $table->timestamps();
         });
