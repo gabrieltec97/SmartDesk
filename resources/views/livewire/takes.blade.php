@@ -30,7 +30,7 @@
                         <td class="align-middle">
                             @foreach ($users as $user)
                                 @if ($user->id == $item->responsible)
-                                    <h6 class="text-sm cursor-pointer">{{ $user->name }}</h6>
+                                    <h6 class="text-sm cursor-pointer">{{ $user->name }} {{ $user->surname}}</h6>
                                 @endif
                             @endforeach
                         </td>
