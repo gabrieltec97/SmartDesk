@@ -40,7 +40,7 @@
                                 </div>
 
                                 <div class="col-12 mt-3">
-                                    <label class="format-label">Comentários:</label>
+                                    <label class="format-label">Observações:</label>
                                     <textarea name="comments" class="form-control txt-area-format" rows="5"></textarea>
                                 </div>
 
