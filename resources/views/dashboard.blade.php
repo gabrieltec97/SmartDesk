@@ -123,7 +123,7 @@
         <div class="col-lg-4 col-md-6">
             <div class="card h-100">
                 <div class="card-header pb-0 title-format">
-                    <h5>Resumo mensal</h5>
+                    <h5>Equipamentos mais utilizados</h5>
                     <p class="text-sm dashboard-legend">
                         <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
                         <span class="font-weight-bold">Métricas resumidas</span> do mês atual
@@ -173,11 +173,7 @@
 
         gradientStroke1.addColorStop(1, 'rgba(20,23,39,0.2)');
         gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-        gradientStroke1.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-        var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-       
+        gradientStroke1.addColorStop(0, 'rgba(20,23,39,0)');
 
         new Chart(ctx2, {
             type: "line",
