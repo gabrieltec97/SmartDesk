@@ -63,6 +63,7 @@ class HomeController extends Controller
             $takes = DB::table('takes')
                 ->where('status', 'Entregue ao técnico')
                 ->where('month', $m)
+                ->where('year', date("Y"))
                 ->count();
 
             array_push($dataTotal, $takes);
