@@ -52,6 +52,20 @@ class HomeController extends Controller
             'Dezembro'
         );
 
-        return view('dashboard');
+        $dataTotal = [];
+        
+
+        foreach($month as $m) {
+            $takes = DB::table('takes')
+                ->where('status', 'Entregue ao técnico')
+                ->where('month', $m)
+                ->count();
+
+            array_push($dataTotal, $takes);
+        }
+
+        return view('dashboard', [
+            'dataTotal' => $dataTotal
+        ]);
     }
 }
