@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('condominium');
             $table->string('responsible');
             $table->string('technical');
+            $table->string('day');
+            $table->string('month');
+            $table->string('year');
             $table->string('comments')->nullable();
             $table->string('photo');
             $table->timestamps();
