@@ -52,9 +52,13 @@ class HomeController extends Controller
             'Dezembro'
         );
 
-        $dataTotal = [];
-        
+        //Dados do segundo card
+        $totalThisMonth = DB::table('takes')
+                ->where('status', 'Entregue ao técnico')
+                ->where('month', $this->monthConverter())
+                ->count();
 
+        $dataTotal = [];
         foreach($month as $m) {
             $takes = DB::table('takes')
                 ->where('status', 'Entregue ao técnico')
@@ -65,7 +69,8 @@ class HomeController extends Controller
         }
 
         return view('dashboard', [
-            'dataTotal' => $dataTotal
+            'dataTotal' => $dataTotal,
+            'totalThisMonth' => $totalThisMonth
         ]);
     }
 }

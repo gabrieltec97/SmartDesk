@@ -36,7 +36,7 @@
                                         <i class="fa-solid fa-calendar-week text-dark dash-icon"></i>
                                     </div>
                                     <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                                       Retiradas
+                                       {{ $totalThisMonth}} Retiradas
                                     </h5>
                                     <span class="text-white text-sm">
                                          este mês
