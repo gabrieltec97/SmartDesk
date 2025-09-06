@@ -74,7 +74,7 @@
                             <h5>Condomínios com mais ocorrências</h5>
                             <p class="text-sm mb-0 dashboard-legend">
                                 <i class="fa fa-check text-info" aria-hidden="true"></i>
-                                <span class="font-weight-bold ms-1">Recebimento x Retirada</span> no mês atual
+                                <span class="font-weight-bold ms-1">Ocorrências</span> no mês atual
                             </p>
                         </div>
                     </div>
