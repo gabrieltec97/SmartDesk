@@ -16,11 +16,8 @@
                                         <i class="fa-solid fa-box-open text-dark dash-icon"></i>
                                     </div>
                                     <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                                        Retiradas
+                                        {{ $totalToday }} Retiradas hoje
                                     </h5>
-                                    <span class="text-white text-sm">
-                                        Hoje
-                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -36,11 +33,8 @@
                                         <i class="fa-solid fa-calendar-week text-dark dash-icon"></i>
                                     </div>
                                     <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                                       {{ $totalThisMonth}} Retiradas
+                                       {{ $totalThisMonth }} Retiradas este mês
                                     </h5>
-                                    <span class="text-white text-sm">
-                                         este mês
-                                    </span>
                                 </div>
                             </div>
                         </div>
