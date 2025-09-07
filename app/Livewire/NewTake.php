@@ -12,7 +12,9 @@ class NewTake extends Component
 
     public function render()
     {
-        $this->stock = Estoque::where('name', 'like', '%'.$this->searchTerm.'%')->get();
+        $this->stock = Estoque::where('name', 'like', '%'.$this->searchTerm.'%')
+            ->where('quantity', '>', '0')
+            ->get();
         return view('livewire.newTake');
     }
 }
