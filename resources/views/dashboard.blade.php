@@ -84,11 +84,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                           <tr>
+                            @foreach($totalCondos as $condo)
+                                @php
+                                    $percent = number_format(($condo['total'] / $totalThisMonth) * 100);
+                                    $width = round($percent / 5) * 5;
+                                @endphp
+                                <tr>
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">2</h6>
+                                                <h6 class="mb-0 text-sm">{{ $condo['condo'] }}</h6>
                                             </div>
                                         </div>
                                     </td>
@@ -97,23 +102,24 @@
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-sm">
-                                                   entrega
+                                                    {{ $condo['total'] }}
                                                 </h6>
                                             </div>
                                         </div>
                                     </td>
 
                                     <td class="align-middle text-center">
-                                        <div class="progress-wrapper w-75 mx-auto">
+                                        <div class="progress-wrapper w-{{ $width }} mx-auto">
                                             <div class="progress-info">
                                                 <div class="progress-percentage">
-                                                    <span class="text-xs font-weight-bold">10%</span>
+                                                    <span class="text-xs font-weight-bold">{{ $percent }}%</span>
                                                     <div class="progress-bar bg-gradient-info w-75" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

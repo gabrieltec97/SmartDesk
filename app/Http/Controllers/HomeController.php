@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Condominios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Unit;
@@ -52,6 +53,26 @@ class HomeController extends Controller
             'Dezembro'
         );
 
+        //Pegando os 5 condomínios com mais ocorrências.
+        $condos = Condominios::all();
+        $totalCondos = [];
+
+        foreach ($condos as $condo){
+            $total = DB::table('takes')
+                ->where('condominium', $condo->name)
+                ->where('status', 'Entregue ao técnico')
+                ->where('month', $this->monthConverter())
+                ->count();
+
+            array_push($totalCondos, ['condo' => $condo->name, 'total' => $total]);
+        }
+
+        usort($totalCondos, function ($a, $b) {
+            return $b['total'] <=> $a['total'];
+        });
+
+        $totalCondos = array_slice($totalCondos, 0, 5);
+
         //Dados do primeiro card
         $totalToday = DB::table('takes')
                 ->where('status', 'Entregue ao técnico')
@@ -66,8 +87,7 @@ class HomeController extends Controller
                 ->where('month', $this->monthConverter())
                 ->count();
 
-        
-        //Dados do gráfico        
+        //Dados do gráfico
         $dataTotal = [];
         foreach($month as $m) {
             $takes = DB::table('takes')
@@ -82,7 +102,8 @@ class HomeController extends Controller
         return view('dashboard', [
             'dataTotal' => $dataTotal,
             'totalThisMonth' => $totalThisMonth,
-            'totalToday' => $totalToday
+            'totalToday' => $totalToday,
+            'totalCondos' => $totalCondos
         ]);
     }
 }
