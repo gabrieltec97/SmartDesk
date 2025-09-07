@@ -26,6 +26,28 @@ class TakeController extends Controller
         ]);
     }
 
+    public function monthConverter()
+    {
+        $mes = date('M');
+
+        $mes_extenso = array(
+            'Jan' => 'Janeiro',
+            'Feb' => 'Fevereiro',
+            'Mar' => 'Marco',
+            'Apr' => 'Abril',
+            'May' => 'Maio',
+            'Jun' => 'Junho',
+            'Jul' => 'Julho',
+            'Aug' => 'Agosto',
+            'Nov' => 'Novembro',
+            'Sep' => 'Setembro',
+            'Oct' => 'Outubro',
+            'Dec' => 'Dezembro'
+        );
+
+        return $mes_extenso["$mes"];
+    }
+
     public function addItem(Request $request)
     {
         $user = Auth::user()->id;
@@ -43,6 +65,9 @@ class TakeController extends Controller
             $take->technical = 'À inserir';
             $take->comments = 'teste ';
             $take->photo = 'sss';
+            $take->year = date("Y");
+            $take->month = $this->monthConverter();
+            $take->day = date("j");
             $take->save();
         }
 
