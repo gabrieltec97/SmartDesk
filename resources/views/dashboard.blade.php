@@ -16,7 +16,7 @@
                                         <i class="fa-solid fa-box-open text-dark dash-icon"></i>
                                     </div>
                                     <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                                        {{ $totalToday }} Retiradas hoje
+                                        {{ $totalToday }} <?= $totalToday == 1 ? 'Retirada' : 'Retiradas' ?> hoje
                                     </h5>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                         <i class="fa-solid fa-calendar-week text-dark dash-icon"></i>
                                     </div>
                                     <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                                       {{ $totalThisMonth }} Retiradas este mês
+                                       {{ $totalThisMonth }} <?= $totalThisMonth == 1 ? 'Retirada' : 'Retiradas' ?> este mês
                                     </h5>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                     <h5>Resumo de ocorrências</h5>
                     <p class="text-sm dashboard-legend">
                         <i class="fa fa-arrow-up text-success"></i>
-                        <span class="font-weight-bold">Métricas ao longo de {{ date("Y") }}</span> 
+                        <span class="font-weight-bold">Métricas ao longo de {{ date("Y") }}</span>
                 </div>
                 <div class="card-body p-3">
                     <div class="chart">
@@ -102,7 +102,7 @@
                                             </div>
                                         </div>
                                     </td>
-                            
+
                                     <td class="align-middle text-center">
                                         <div class="progress-wrapper w-75 mx-auto">
                                             <div class="progress-info">
