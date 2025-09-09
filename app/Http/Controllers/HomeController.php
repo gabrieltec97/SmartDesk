@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Condominios;
+use App\Models\Estoque;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Unit;
@@ -73,6 +74,24 @@ class HomeController extends Controller
 
         $totalCondos = array_slice($totalCondos, 0, 5);
 
+        //Pegando os 5 condomínios com mais ocorrências.
+        $items = Estoque::all();
+        $totalItems = [];
+
+        foreach ($items as $item){
+            $totalCount = DB::table('take_items')
+                ->where('item', $item->name)
+                ->count();
+
+            array_push($totalItems, ['condo' => $item->name, 'total' => $totalCount]);
+        }
+
+        usort($totalItems, function ($a, $b) {
+            return $b['total'] <=> $a['total'];
+        });
+
+        $totalItems = array_slice($totalItems, 0, 5);
+
         //Dados do primeiro card
         $totalToday = DB::table('takes')
                 ->where('status', 'Entregue ao técnico')
@@ -103,7 +122,8 @@ class HomeController extends Controller
             'dataTotal' => $dataTotal,
             'totalThisMonth' => $totalThisMonth,
             'totalToday' => $totalToday,
-            'totalCondos' => $totalCondos
+            'totalCondos' => $totalCondos,
+            'totalItems' => $totalItems,
         ]);
     }
 }
