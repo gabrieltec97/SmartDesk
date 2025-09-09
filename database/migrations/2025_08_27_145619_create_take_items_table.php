@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('take_items', function (Blueprint $table) {
             $table->id();
-            $table->string('take_id');
+            $table->integer('take_id');
             $table->string('item');
-            $table->string('quantity');
+            $table->integer('quantity');
             $table->string('condominium');
+            $table->string('month');
+            $table->integer('year');
             $table->timestamps();
         });
     }
