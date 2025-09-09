@@ -81,6 +81,8 @@ class HomeController extends Controller
         foreach ($items as $item){
             $totalCount = DB::table('take_items')
                 ->where('item', $item->name)
+                ->where('month', $this->monthConverter())
+                ->where('year', date("Y"))
                 ->count();
 
             array_push($totalItems, ['item' => $item->name, 'total' => $totalCount]);

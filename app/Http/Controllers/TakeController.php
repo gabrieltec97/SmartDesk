@@ -95,6 +95,8 @@ class TakeController extends Controller
                     'take_id' => $takeNumber[0]->id,
                     'item' => $validatedData['item'],
                     'quantity' => '1',
+                    'month' => $this->monthConverter(),
+                    'year' => date("Y"),
                     'condominium' => 'teste',
                     'created_at' => now(),
                     'updated_at' => now(),
