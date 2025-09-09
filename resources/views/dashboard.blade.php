@@ -139,10 +139,12 @@
                     <div class="timeline timeline-one-side dashboard-legend">
                         <div class="timeline-block mb-3">
                             <div class="timeline-content">
-                                <h6 class="text-dark text-sm font-weight-bold mb-0"> Equipamentos mais utilizados</h6>
-                                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">
-                                   Recebida com observação
-                                </p>
+                                @foreach ($totalItems as $most)
+                                    <h6 class="text-dark text-sm font-weight-bold mb-0 mt-2">{{ $most['item'] }}</h6>
+                                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">
+                                        {{ $most['total']}} <?= $most['total'] == '1'? 'Retirada' : 'Retiradas'?>
+                                    </p>
+                                @endforeach
                             </div>
                         </div>
                     </div>

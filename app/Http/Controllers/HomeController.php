@@ -83,7 +83,7 @@ class HomeController extends Controller
                 ->where('item', $item->name)
                 ->count();
 
-            array_push($totalItems, ['condo' => $item->name, 'total' => $totalCount]);
+            array_push($totalItems, ['item' => $item->name, 'total' => $totalCount]);
         }
 
         usort($totalItems, function ($a, $b) {
