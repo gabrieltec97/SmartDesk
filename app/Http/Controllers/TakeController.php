@@ -142,28 +142,20 @@ class TakeController extends Controller
     public function update(Request $request, $id)
     {
         $take = take::find($id);
-        $take->status = 'Entregue ao técnico';
-        $take->condominium = $request->condo;
-        $take->technical = $request->technical;
-        $take->comments = $request->comments;
 
-        // validação
         $request->validate([
             'photo' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
-        // pega a imagem
         $image = $request->file('photo');
-
-        // cria um nome único (timestamp + nome original)
         $imageName = time() . '_' . $image->getClientOriginalName();
-
-        // move para public/img/takes
         $image->move(public_path('img/takes'), $imageName);
-
-        // caminho relativo que pode ser salvo no banco
         $path = 'img/takes/' . $imageName;
 
+        $take->status = 'Entregue ao técnico';
+        $take->condominium = $request->condo;
+        $take->technical = $request->technical;
+        $take->comments = $request->comments;
         $take->photo = $path;
         $take->save();
 
