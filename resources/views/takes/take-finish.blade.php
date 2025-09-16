@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body px-0 pb-2 first-item">
                     <div class="container">
-                        <form action="{{ route('retiradas.update', $id) }}" method="post">
+                        <form action="{{ route('retiradas.update', $id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">
@@ -46,7 +46,7 @@
 
                                 <div class="col-12 col-md-6 mt-3">
                                     <label class="format-label">Imagem:</label>
-                                    <input type="file" name="photo" class="form-control">
+                                    <input type="file" name="photo"  accept=".jpg,.jpeg,.png,.gif" class="form-control">
                                 </div>
 
                                 <div class="col-12 title-format take-format d-flex justify-content-end">
