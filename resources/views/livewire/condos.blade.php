@@ -1,5 +1,5 @@
 <div>
-    <input type="search" class="form-control mb-4" wire:model.live.debounce.150ms="searchTerm">
+    <input type="search" class="form-control mb-4 searchCondos" wire:model.live.debounce.150ms="searchTerm">
 
     <div class="table-responsive">
         <table class="table table-striped table-bordered">
