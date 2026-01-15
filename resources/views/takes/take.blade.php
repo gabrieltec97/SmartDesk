@@ -31,11 +31,29 @@
                             <span class="font-weight-bold">Data</span>
                             <input type="text" class="form-control mt-2" value="{{ $take->date }}" disabled>
                         </div>
-                    </div>
-                </div>
-                <div class="card-body px-0 pb-2 first-item">
-                    <div class="container">
 
+                        <div class="col-12 mt-4">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th class="ps-2 text-start text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Item</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Quantidade</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($items as $item)
+                                        <tr>
+                                            <td class="align-middle">
+                                                <h6 class="text-sm cursor-pointer">{{ $item->item }}</h6>
+                                            </td>
+                                            <td class="align-middle">
+                                                <h6 class="text-sm cursor-pointer">{{ $item->quantity }} <?= $item->quantity > 1 ? 'unidades' : 'unidade' ?></h6>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
