@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Livewire\Takes;
 use App\Models\Condominios;
 use App\Models\Estoque;
 use App\Models\Funcionarios;
 use App\Models\take;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +25,17 @@ class TakeController extends Controller
         $condos = Condominios::all();
         return view('takes.new-take', [
             'condos' => $condos
+        ]);
+    }
+
+    public function show($id)
+    {
+        $take = take::find($id);
+        $responsible = User::find($take->responsible);
+        $take->responsible_name = $responsible->name . ' ' . $responsible->surname;
+
+        return view('takes.take', [
+            'take' => $take
         ]);
     }
 

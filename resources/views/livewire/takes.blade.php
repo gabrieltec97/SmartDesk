@@ -18,29 +18,29 @@
                 @foreach($take as $item)
                     <tr>
                         <td class="ps-2 align-middle">
-                            <h6 class="text-sm cursor-pointer">#{{ $item->id }}</h6>
+                            <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">#{{ $item->id }}</a></h6>
                         </td>
                         <td class="align-middle">
-                            <h6 class="text-sm cursor-pointer">{{ $item->status }}</h6>
+                            <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">{{ $item->status }}</a></h6>
                         </td>
                         <td class="align-middle">
-                            <h6 class="text-sm cursor-pointer">{{ $item->condominium }}</h6>
+                            <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">{{ $item->condominium }}</a></h6>
                         </td>
 
                         <td class="align-middle">
                             @foreach ($users as $user)
                                 @if ($user->id == $item->responsible)
-                                    <h6 class="text-sm cursor-pointer">{{ $user->name }} {{ $user->surname}}</h6>
+                                    <h6 class="text-sm cursor-pointer"> <a href="{{ route('retiradas.show', $item->id) }}">{{ $user->name }} {{ $user->surname}}</a></h6>
                                 @endif
                             @endforeach
                         </td>
 
                         <td class="align-middle">
-                            <h6 class="text-sm cursor-pointer">{{ $item->technical }}</h6>
+                            <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">{{ $item->technical }}</a></h6>
                         </td>
 
                         <td class="align-middle">
-                            <h6 class="text-sm cursor-pointer">{{ $item->created_at }}</h6>
+                            <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">{{ $item->created_at }}</a></h6>
                         </td>
                     </tr>
                 @endforeach
