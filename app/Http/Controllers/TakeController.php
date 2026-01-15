@@ -31,8 +31,10 @@ class TakeController extends Controller
     public function show($id)
     {
         $take = take::find($id);
+        $date_format = $take->created_at->format('d/m/Y H:i');
         $responsible = User::find($take->responsible);
         $take->responsible_name = $responsible->name . ' ' . $responsible->surname;
+        $take->date = $date_format;
 
         return view('takes.take', [
             'take' => $take

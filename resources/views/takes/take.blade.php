@@ -9,7 +9,27 @@
                 <div class="card-header pb-0">
                     <div class="row">
                         <div class="col-12 title-format">
-                            <h5 class="mb-0">Equipamentos selecionados:</h5>
+                            <h5 class="mb-0">Retirada {{ $take->id }}:</h5>
+                        </div>
+
+                        <div class="col-3 mt-3">
+                            <span class="font-weight-bold">Condomínio</span>
+                            <input type="text" class="form-control mt-2" value="{{ $take->condominium }}" disabled>
+                        </div>
+
+                        <div class="col-3 mt-3">
+                            <span class="font-weight-bold">Técnico</span>
+                            <input type="text" class="form-control mt-2" value="{{ $take->technical }}" disabled>
+                        </div>
+
+                        <div class="col-3 mt-3">
+                            <span class="font-weight-bold">Responsável</span>
+                            <input type="text" class="form-control mt-2" value="{{ $take->responsible_name }}" disabled>
+                        </div>
+
+                        <div class="col-3 mt-3">
+                            <span class="font-weight-bold">Data</span>
+                            <input type="text" class="form-control mt-2" value="{{ $take->date }}" disabled>
                         </div>
                     </div>
                 </div>
