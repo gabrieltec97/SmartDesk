@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Condominios;
 use App\Models\OrderService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderServiceController extends Controller
 {
@@ -20,7 +23,17 @@ class OrderServiceController extends Controller
      */
     public function create()
     {
-        return view('serviceOrders.new-serviceOrder');
+        $user = Auth::user();
+        $condos = Condominios::all();
+        $techs = DB::table('funcionarios')
+            ->where('sector', 'Área Técnica')
+            ->get();
+
+        return view('serviceOrders.new-serviceOrder', [
+            'condos' => $condos,
+            'techs' => $techs,
+            'user' => $user
+        ]);
     }
 
     /**
