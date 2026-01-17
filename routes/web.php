@@ -3,6 +3,7 @@
 use App\Http\Controllers\CondominiosController;
 use App\Http\Controllers\EstoqueController;
 use App\Http\Controllers\FuncionariosController;
+use App\Http\Controllers\OrderServiceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TakeController;
@@ -23,3 +24,4 @@ Route::resource('estoque', EstoqueController::class);
 Route::resource('condominios', CondominiosController::class);
 Route::resource('funcionarios', FuncionariosController::class);
 Route::resource('retiradas', TakeController::class);
+Route::resource('ordens-servico', OrderServiceController::class);

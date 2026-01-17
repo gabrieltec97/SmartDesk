@@ -12,7 +12,7 @@ class OrderServiceController extends Controller
      */
     public function index()
     {
-        //
+        echo 'here';
     }
 
     /**
@@ -20,7 +20,7 @@ class OrderServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('serviceOrders.new-serviceOrder');
     }
 
     /**
