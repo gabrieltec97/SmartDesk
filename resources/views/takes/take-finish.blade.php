@@ -19,7 +19,7 @@
                             @csrf
                             @method('PUT')
                             <div class="row">
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <label class="format-label">Condomínio:</label>
                                     <select name="condo" class="form-control">
                                         <option value="">Selecione</option>
@@ -29,7 +29,7 @@
                                     </select>
                                 </div>
 
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <label class="format-label">Técnico:</label>
                                     <select name="technical" class="form-control">
                                         <option value="">Selecione</option>
@@ -37,6 +37,11 @@
                                             <option value="{{ $technical->name }}">{{ $technical->name }}</option>
                                         @endforeach
                                     </select>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <label class="format-label">Ordem de serviço:</label>
+                                    <input type="number" placeholder="Digite o número da Os" name="os" class="form-control">
                                 </div>
 
                                 <div class="col-12 mt-3">

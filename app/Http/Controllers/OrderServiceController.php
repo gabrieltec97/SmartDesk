@@ -41,7 +41,15 @@ class OrderServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $responsible = Auth::user();
+        $serviceOrder = new OrderService();
+        $serviceOrder->condominium = $request->condominium;
+        $serviceOrder->technical = $request->technical;
+        $serviceOrder->responsible = $responsible-> name . ' ' . $responsible->surname;
+        $serviceOrder->description = $request->description;
+        $serviceOrder->save();
+
+        return redirect()->route('ordens-servico.index')->with('msg-success', 'Ordem de serviço cadastrada com sucesso! Se necessário adicione itens do estoque para esta OS.');
     }
 
     /**

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('technical');
             $table->string('responsible');
             $table->string('description');
-            $table->string('date');
             $table->timestamps();
         });
     }

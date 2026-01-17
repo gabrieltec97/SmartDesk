@@ -16,7 +16,7 @@
 
                             <div class="col-4 my-3">
                                 <span class="font-weight-bold">Condomínio</span>
-                                <select name="condos" style="cursor: pointer;" class="form-control mt-2">
+                                <select name="condominium" style="cursor: pointer;" class="form-control mt-2">
                                     <option selected disabled>Selecione</option>
                                      @foreach($condos as $condo)
                                         <option value="{{ $condo->name }}" class="form-control">{{ $condo->name }}</option>
