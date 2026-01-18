@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Retirada de Equipamentos - Gerenciamento completo.')
+@section('title', 'Ordens de serviço')
 
 @section('content')
     <div class="row">
@@ -11,7 +11,7 @@
 
                         <!-- Coluna do título -->
                         <div class="col-md-6 col-12 title-format">
-                            <h5 class="mb-0">Retiradas</h5>
+                            <h5 class="mb-0">Ordens de serviço</h5>
                             <p class="text-sm mb-0">
                                 <span class="font-weight-bold">Gerenciamento</span> completo
                             </p>

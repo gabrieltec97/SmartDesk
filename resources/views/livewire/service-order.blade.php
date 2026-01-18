@@ -20,22 +20,22 @@
                     @endphp
                     <tr>
                         <td class="ps-2 align-middle">
-                            <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">#{{ $item->id }}</a></h6>
+                            <h6 class="text-sm cursor-pointer"><a href="{{ route('ordens-servico.show', $item->id) }}">#{{ $item->id }}</a></h6>
                         </td>
                         <td class="align-middle">
-                            <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">{{ $item->condominium }}</a></h6>
-                        </td>
-
-                        <td class="align-middle">
-                            <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">{{ $item->responsible }}</a></h6>
+                            <h6 class="text-sm cursor-pointer"><a href="{{ route('ordens-servico.show', $item->id) }}">{{ $item->condominium }}</a></h6>
                         </td>
 
                         <td class="align-middle">
-                            <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">{{ $item->technical }}</a></h6>
+                            <h6 class="text-sm cursor-pointer"><a href="{{ route('ordens-servico.show', $item->id) }}">{{ $item->responsible }}</a></h6>
                         </td>
 
                         <td class="align-middle">
-                            <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">{{ $date_format }}</a></h6>
+                            <h6 class="text-sm cursor-pointer"><a href="{{ route('ordens-servico.show', $item->id) }}">{{ $item->technical }}</a></h6>
+                        </td>
+
+                        <td class="align-middle">
+                            <h6 class="text-sm cursor-pointer"><a href="{{ route('ordens-servico.show', $item->id) }}">{{ $date_format }}</a></h6>
                         </td>
                     </tr>
                 @endforeach
