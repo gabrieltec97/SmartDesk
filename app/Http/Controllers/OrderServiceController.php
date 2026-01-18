@@ -55,9 +55,28 @@ class OrderServiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(OrderService $orderService)
+    public function show($id)
     {
-        //
+        $OS = OrderService::find($id);
+        $items = DB::table('take_items')
+            ->where('os_id', $id)
+            ->get();
+
+        $items = $items
+            ->groupBy('item')
+            ->map(function ($grupo) {
+                return (object) [
+                    'item' => $grupo->first()->item,
+                    'quantity' => $grupo->sum('quantity'),
+                    'condominium' => $grupo->first()->condominium,
+                ];
+            })
+            ->values();
+
+        return view('serviceOrders.serviceOrder', [
+            'os' => $OS,
+            'items' => $items
+        ]);
     }
 
     /**

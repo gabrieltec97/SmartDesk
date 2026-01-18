@@ -20,41 +20,16 @@
                             @method('PUT')
                             <div class="row">
                                 <div class="col-12 col-md-4">
-                                    <label class="format-label">Condomínio:</label>
-                                    <select name="condo" class="form-control">
-                                        <option value="">Selecione</option>
-                                        @foreach($condos as $condo)
-                                            <option value="{{ $condo->name }}">{{ $condo->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="col-12 col-md-4">
-                                    <label class="format-label">Técnico:</label>
-                                    <select name="technical" class="form-control">
-                                        <option value="">Selecione</option>
-                                        @foreach($technicals as $technical)
-                                            <option value="{{ $technical->name }}">{{ $technical->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="col-12 col-md-4">
                                     <label class="format-label">Ordem de serviço:</label>
-                                    <input type="number" placeholder="Digite o número da Os" name="os" class="form-control">
+                                    <input type="number" placeholder="Digite o número da Os" name="os_id" class="form-control">
                                 </div>
 
-                                <div class="col-12 mt-3">
-                                    <label class="format-label">Observações:</label>
-                                    <textarea name="comments" class="form-control txt-area-format" rows="5"></textarea>
-                                </div>
-
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-6">
                                     <label class="format-label">Imagem:</label>
                                     <input type="file" name="photo"  accept=".jpg,.jpeg,.png,.gif" class="form-control">
                                 </div>
 
-                                <div class="col-12 title-format take-format d-flex justify-content-end">
+                                <div class="col-12 title-format take-format mt-2">
                                     <button class="btn btn-primary my-3 take-btn"><i class="fa-solid fa-clipboard-check"></i> &nbsp;Finalizar retirada</button>
                                 </div>
                             </div>

@@ -6,6 +6,7 @@ use App\Livewire\Takes;
 use App\Models\Condominios;
 use App\Models\Estoque;
 use App\Models\Funcionarios;
+use App\Models\OrderService;
 use App\Models\take;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ class TakeController extends Controller
         $take->responsible_name = $responsible->name . ' ' . $responsible->surname;
         $take->date = $date_format;
 
-        $items = DB::table('take_items')->where('take_id', $id)->get();
+        $items = DB::table('take_items')->where('os_id', $id)->get();
 
         return view('takes.take', [
             'take' => $take,
@@ -75,7 +76,6 @@ class TakeController extends Controller
 
         if ($checkOs == 0){
             $take = new take();
-            $take->os_id = null;
             $take->status = 'Em separação';
             $take->condominium = 'À inserir';
             $take->responsible = $user;
@@ -159,9 +159,9 @@ class TakeController extends Controller
     public function update(Request $request, $id)
     {
         $take = take::find($id);
-
+        $Os = OrderService::find($request->os_id);
         $request->validate([
-            'photo' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'photo' => 'image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
         $image = $request->file('photo');
@@ -170,11 +170,17 @@ class TakeController extends Controller
         $path = 'img/takes/' . $imageName;
 
         $take->status = 'Entregue ao técnico';
-        $take->condominium = $request->condo;
-        $take->technical = $request->technical;
-        $take->comments = $request->comments;
+        $take->condominium = $Os->condominium;
+        $take->technical = $Os->technical;
+        $take->os_id = $request->os_id;
         $take->photo = $path;
         $take->save();
+
+        DB::table('take_items')
+            ->where('take_id', $take->id)
+            ->update([
+                'os_id' => $request->os_id
+            ]);
 
         $items = DB::table('take_items')
             ->where('take_id', $take->id)->get();

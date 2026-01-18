@@ -19,7 +19,7 @@
 
                         <!-- Coluna dos botões -->
                         <div class="col-md-6 col-12 d-flex justify-content-center justify-content-lg-end gap-2 mt-2 mt-md-0">
-                            <a class="btn btn-primary" href="{{ route('retiradas.create') }}"><i class="fa-solid fa-user-plus icon-format"></i> Nova retirada</a>
+                            <a class="btn btn-primary" href="{{ route('ordens-servico.create') }}"><i class="fa-solid fa-user-plus icon-format"></i> Nova Ordem de Serviço</a>
                         </div>
                     </div>
                 </div>
