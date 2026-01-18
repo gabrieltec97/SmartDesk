@@ -15,6 +15,9 @@
             <tbody>
             @if($serviceOrders && $serviceOrders->count() > 0)
                 @foreach($serviceOrders as $item)
+                    @php
+                        $date_format = $item->created_at->format('d/m/Y H:i');
+                    @endphp
                     <tr>
                         <td class="ps-2 align-middle">
                             <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">#{{ $item->id }}</a></h6>
@@ -32,7 +35,7 @@
                         </td>
 
                         <td class="align-middle">
-                            <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">{{ $item->created_at }}</a></h6>
+                            <h6 class="text-sm cursor-pointer"><a href="{{ route('retiradas.show', $item->id) }}">{{ $date_format }}</a></h6>
                         </td>
                     </tr>
                 @endforeach
