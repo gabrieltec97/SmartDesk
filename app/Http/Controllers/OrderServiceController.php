@@ -15,7 +15,7 @@ class OrderServiceController extends Controller
      */
     public function index()
     {
-        echo 'here';
+        return view('serviceOrders.serviceOrder-management');
     }
 
     /**
