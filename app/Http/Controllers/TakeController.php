@@ -80,7 +80,6 @@ class TakeController extends Controller
             $take->condominium = 'À inserir';
             $take->responsible = $user;
             $take->technical = 'À inserir';
-            $take->comments = 'teste ';
             $take->photo = 'sss';
             $take->year = date("Y");
             $take->month = $this->monthConverter();
