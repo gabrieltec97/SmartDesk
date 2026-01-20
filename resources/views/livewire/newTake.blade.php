@@ -1,130 +1,112 @@
 <div>
-    <input type="search" class="form-control mb-4" wire:model.live.debounce.150ms="searchTerm">
+    <input type="search"
+           class="form-control mb-4"
+           wire:model.live.debounce.150ms="searchTerm"
+           placeholder="Buscar item...">
 
     <div class="table-responsive">
         <table class="table table-striped table-bordered">
             <thead>
             <tr>
-                <th class="ps-2 text-start text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
-
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nome</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Quantidade</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Número de série</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Imagem</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Adicionar</th>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Número de série</th>
+                <th>Imagem</th>
+                <th>Ações</th>
             </tr>
             </thead>
             <tbody>
-            @if($stock && $stock->count() > 0)
-                @foreach($stock as $item)
-                    <tr>
-                        <td class="ps-2 align-middle">
-                            <h6 class="text-sm cursor-pointer">#{{ $item->id }}</h6>
-                        </td>
-                        <td class="align-middle">
-                            <h6 class="text-sm cursor-pointer">{{ $item->name }}</h6>
-                        </td>
-                        <td class="align-middle">
-                            @if($item->quantity < 3 && $item->quantity >= 1)
-                                <h6 class="text-sm text-warning cursor-pointer"><?= $item->quantity == 1  ?  $item->quantity . ' unidade' :  $item->quantity . ' unidades' ?></h6>
-                            @elseif($item->quantity == 0)
-                                <h6 class="text-sm text-danger cursor-pointer"><span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> &nbsp;Em falta</h6>
-                            @else
-                                <h6 class="text-sm cursor-pointer"><?= $item->quantity == 1  ?  $item->quantity . ' unidade' :  $item->quantity . ' unidades' ?></h6>
-                            @endif
-                        </td>
+            @foreach($stock as $item)
+                <tr data-item-name="{{ $item->name }}">
+                    <td>#{{ $item->id }}</td>
+                    <td>{{ $item->name }}</td>
+                    <td class="item-quantity">{{ $item->quantity }}</td>
+                    <td>{{ $item->serialNumber }}</td>
+                    <td>
+                        <img src="{{ asset($item->image) }}" class="img-stock-list-format">
+                    </td>
+                    <td>
+                        <!-- BOTÃO ADICIONAR -->
+                        <span class="takeAction text-primary cursor-pointer"
+                              data-action="add"
+                              data-item-name="{{ $item->name }}"
+                              title="Adicionar">
+                            <i class="fa-solid fa-circle-plus fa-lg"></i>
+                        </span>
 
-                        <td class="align-middle">
-                            <h6 class="text-sm cursor-pointer">{{ $item->serialNumber }}</h6>
-                        </td>
-
-                        <td class="align-middle">
-                            <img src="{{ asset($item->image) }}" class="img-stock-list-format cursor-pointer">
-                        </td>
-
-                        <td class="align-middle">
-                            <span class="text-primary cursor-pointer font-weight-bold addToTake"
-                                  data-item-id="{{ $item->id }}"
-                                  data-item-quantity="{{ $item->quantity }}"
-                                  data-item-name="{{ $item->name }}"
-                                  title="Adicionar à lista">
-                                <i class="fa-solid fa-circle-plus"></i>
-                            </span>
-
-                            <span class="text-danger cursor-pointer font-weight-bold addToTake"
-                                  data-item-id="{{ $item->id }}"
-                                  data-item-quantity="{{ $item->quantity }}"
-                                  data-item-name="{{ $item->name }}"
-                                  title="Remover da lista">
-                                <i class="fa-solid fa-circle-minus"></i>
-                            </span>
-                        </td>
-                    </tr>
-                @endforeach
-            @else
-                <tr>
-                    <td colspan="4"><p class="text-danger">Sem registros com este nome</p></td>
+                        <!-- BOTÃO REMOVER -->
+                        <span class="takeAction text-danger cursor-pointer ms-2"
+                              data-action="remove"
+                              data-item-name="{{ $item->name }}"
+                              title="Remover">
+                            <i class="fa-solid fa-circle-minus fa-lg"></i>
+                        </span>
+                    </td>
                 </tr>
-            @endif
+            @endforeach
             </tbody>
         </table>
     </div>
 
+    <!-- CSRF -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- SCRIPT -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const addToTakeButtons = document.querySelectorAll('.addToTake');
 
-            addToTakeButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    // Obtém os dados do HTML
-                    const itemId = this.getAttribute('data-item-id');
-                    const itemQuantity = this.getAttribute('data-item-quantity');
-                    const itemName = this.getAttribute('data-item-name'); // <--- Captura o nome aqui
+            // Seleciona todos os botões
+            document.querySelectorAll('.takeAction').forEach(button => {
 
-                    const data = {
-                        take_id: 1, // Exemplo de ID da retirada
-                        item: itemName, // <--- Envia o nome em vez do ID
-                        quantity: itemQuantity,
-                        condominium: 'Condomínio Exemplo',
+                button.addEventListener('click', async function () {
+
+                    const row = this.closest('tr');
+                    const quantityCell = row.querySelector('.item-quantity');
+
+                    const payload = {
+                        action: this.dataset.action, // add | remove
+                        item: this.dataset.itemName
                     };
 
-                    fetch('{{ route('take-add') }}', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        },
-                        body: JSON.stringify(data)
-                    })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Falha ao adicionar o item. Status: ' + response.status);
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            Livewire.dispatch('itemAdded');
-                            const notyf = new Notyf({
-                                position: {
-                                    x: 'right',
-                                    y: 'top',
-                                }
-                            });
-
-                            notyf
-                                .success({
-                                    message: data.message,
-                                    dismissible: true,
-                                    duration: 5000
-                                });
-                        })
-                        .catch(error => {
-                            console.error('Erro:', error.message);
-                            alert('Erro ao adicionar o item: ' + error.message);
+                    try {
+                        const response = await fetch('{{ route('take-add') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                            },
+                            body: JSON.stringify(payload)
                         });
+
+                        if (!response.ok) throw new Error('Erro na requisição');
+
+                        const data = await response.json();
+
+                        // Atualiza quantidade visualmente
+                        let currentQty = parseInt(quantityCell.textContent);
+                        if (payload.action === 'add') {
+                            quantityCell.textContent = currentQty + 1;
+                        } else {
+                            quantityCell.textContent = Math.max(currentQty - 1, 0);
+                        }
+
+                        // Atualiza Livewire
+                        Livewire.dispatch('itemAdded');
+
+                        // Notificação
+                        new Notyf({ position: { x: 'right', y: 'top' } }).success(data.message);
+
+                    } catch (error) {
+                        console.error(error);
+                        alert('Erro ao executar ação: ' + error.message);
+                    }
+
                 });
+
             });
+
         });
     </script>
 </div>

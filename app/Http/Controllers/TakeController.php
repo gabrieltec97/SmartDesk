@@ -68,67 +68,93 @@ class TakeController extends Controller
 
     public function addItem(Request $request)
     {
-        $user = Auth::user()->id;
-        $checkOs = DB::table('takes')
-            ->where('status', 'Em separação')
-            ->where('responsible', $user)
-            ->count();
+        $userId = Auth::id();
 
-        if ($checkOs == 0){
-            $take = new take();
-            $take->status = 'Em separação';
-            $take->condominium = 'À inserir';
-            $take->responsible = $user;
-            $take->technical = 'À inserir';
-            $take->photo = 'sss';
-            $take->year = date("Y");
-            $take->month = $this->monthConverter();
-            $take->day = date("j");
-            $take->save();
+        // 1️⃣ Busca retirada existente
+        $take = DB::table('takes')
+            ->where('responsible', $userId)
+            ->where('status', 'Em separação')
+            ->first();
+
+        // 2️⃣ Se não existe, cria uma nova
+        if (!$take) {
+            $takeId = DB::table('takes')->insertGetId([
+                'status' => 'Em separação',
+                'condominium' => 'À inserir',
+                'responsible' => $userId,
+                'technical' => 'À inserir',
+                'photo' => 'sss',
+                'year' => date("Y"),
+                'month' => $this->monthConverter(),
+                'day' => date("j"),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
+            $take = DB::table('takes')->where('id', $takeId)->first();
         }
 
+        // 3️⃣ Valida entrada
         $validatedData = $request->validate([
-            'take_id' => 'required',
             'item' => 'required|string',
+            'action' => 'required|in:add,remove',
         ]);
 
-        try {
-            $takeNumber = DB::table('takes')
-                ->where('responsible', $user)
-                ->where('status', 'Em separação')->get();
+        // 4️⃣ Busca item existente na retirada
+        $takeItem = DB::table('take_items')
+            ->where('take_id', $take->id)
+            ->where('item', $validatedData['item'])
+            ->first();
 
-            $count = DB::table('take_items')
-                ->where('take_id', $takeNumber[0]->id)
-                ->where('item', $validatedData['item'])
-                ->count();
+        // 5️⃣ Adicionar ou remover
+        if ($validatedData['action'] === 'add') {
 
-            $quantity = DB::table('take_items')
-                ->where('take_id', $takeNumber[0]->id)
-                ->where('item', $validatedData['item'])->get();
-
-            if ($count == 0){
+            if (!$takeItem) {
                 DB::table('take_items')->insert([
-                    'take_id' => $takeNumber[0]->id,
+                    'take_id' => $take->id,
                     'item' => $validatedData['item'],
-                    'quantity' => '1',
+                    'quantity' => 1,
                     'month' => $this->monthConverter(),
-                    'year' => date("Y"),
+                    'year' => date('Y'),
                     'condominium' => 'teste',
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
-            }else{
-                DB::table('take_items')->where('item', $validatedData['item'])
-                    ->update(['quantity' => $quantity[0]->quantity + 1]);
+            } else {
+                DB::table('take_items')
+                    ->where('id', $takeItem->id)
+                    ->update([
+                        'quantity' => $takeItem->quantity + 1,
+                        'updated_at' => now()
+                    ]);
             }
 
-            return response()->json(['message' => 'Item adicionado com sucesso!'], 201);
-        } catch (\Exception $e) {
+            return response()->json(['message' => 'Item adicionado com sucesso!']);
+        }
 
-            Log::error('Erro ao adicionar item à lista de retirada: ' . $e->getMessage());
-            return response()->json(['error' => 'Erro interno do servidor.'], 500);
+        if ($validatedData['action'] === 'remove') {
+
+            if (!$takeItem) {
+                return response()->json(['message' => 'Item não existe na retirada']);
+            }
+
+            if ($takeItem->quantity > 1) {
+                DB::table('take_items')
+                    ->where('id', $takeItem->id)
+                    ->update([
+                        'quantity' => $takeItem->quantity - 1,
+                        'updated_at' => now()
+                    ]);
+            } else {
+                DB::table('take_items')
+                    ->where('id', $takeItem->id)
+                    ->delete();
+            }
+
+            return response()->json(['message' => 'Item removido com sucesso!']);
         }
     }
+
 
     public function finish()
     {
