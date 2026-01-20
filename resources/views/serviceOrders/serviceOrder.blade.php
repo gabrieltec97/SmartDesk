@@ -12,19 +12,24 @@
                             <h5 class="mb-0">Ordem de serviço Nº {{ $os->id }}</h5>
                         </div>
 
-                        <div class="col-4 my-3">
+                        <div class="col-3 my-3">
                             <span class="font-weight-bold">Condomínio</span>
                             <input type="text" class="form-control" value="{{ $os->condominium }}" disabled>
                         </div>
 
-                        <div class="col-4 my-3">
+                        <div class="col-3 my-3">
                             <span class="font-weight-bold">Técnico</span>
                             <input type="text" class="form-control" value="{{ $os->technical }}" disabled>
                         </div>
 
-                        <div class="col-4 my-3">
+                        <div class="col-3 my-3">
                             <span class="font-weight-bold">Responsável</span>
                             <input type="text" class="form-control" value="{{ $os->responsible }}" disabled>
+                        </div>
+
+                        <div class="col-3 my-3">
+                            <span class="font-weight-bold">Data</span>
+                            <input type="text" class="form-control" value="{{ $date }}" disabled>
                         </div>
 
                         <div class="col-12 my-3">

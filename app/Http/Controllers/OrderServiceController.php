@@ -58,6 +58,7 @@ class OrderServiceController extends Controller
     public function show($id)
     {
         $OS = OrderService::find($id);
+        $date_format = $OS->created_at->format('d/m/Y H:i');
         $items = DB::table('take_items')
             ->where('os_id', $id)
             ->get();
@@ -75,7 +76,8 @@ class OrderServiceController extends Controller
 
         return view('serviceOrders.serviceOrder', [
             'os' => $OS,
-            'items' => $items
+            'items' => $items,
+            'date' => $date_format
         ]);
     }
 
