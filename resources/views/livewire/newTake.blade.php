@@ -18,10 +18,10 @@
             </thead>
             <tbody>
             @foreach($stock as $item)
-                <tr data-item-name="{{ $item->name }}">
+                <tr data-item-name="{{ $item->name }}" data-stock-quantity="{{ $item->quantity }}">
                     <td>#{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
-                    <td class="item-quantity">{{ $item->quantity }}</td>
+                    <td>{{ $item->quantity }}</td>
                     <td>{{ $item->serialNumber }}</td>
                     <td>
                         <img src="{{ asset($item->image) }}" class="img-stock-list-format">
@@ -49,25 +49,33 @@
         </table>
     </div>
 
-    <!-- CSRF -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- SCRIPT -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
 
-            // Seleciona todos os botões
+            const takeItems = {};
+            const notyf = new Notyf({ position: { x: 'right', y: 'top' } });
+
             document.querySelectorAll('.takeAction').forEach(button => {
 
                 button.addEventListener('click', async function () {
 
                     const row = this.closest('tr');
-                    const quantityCell = row.querySelector('.item-quantity');
+                    const itemName = this.dataset.itemName;
+                    const stockQuantity = parseInt(row.dataset.stockQuantity);
+                    const action = this.dataset.action;
 
-                    const payload = {
-                        action: this.dataset.action, // add | remove
-                        item: this.dataset.itemName
-                    };
+                    if (!takeItems[itemName]) takeItems[itemName] = 0;
+
+                    // valida limites
+                    if (action === 'add' && takeItems[itemName] >= stockQuantity) {
+                        notyf.error('Quantidade máxima em estoque atingida!');
+                        return;
+                    }
+                    if (action === 'remove' && takeItems[itemName] <= 0) {
+                        return;
+                    }
 
                     try {
                         const response = await fetch('{{ route('take-add') }}', {
@@ -77,36 +85,29 @@
                                 'Accept': 'application/json',
                                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                             },
-                            body: JSON.stringify(payload)
+                            body: JSON.stringify({ action, item: itemName })
                         });
 
                         if (!response.ok) throw new Error('Erro na requisição');
 
                         const data = await response.json();
 
-                        // Atualiza quantidade visualmente
-                        let currentQty = parseInt(quantityCell.textContent);
-                        if (payload.action === 'add') {
-                            quantityCell.textContent = currentQty + 1;
-                        } else {
-                            quantityCell.textContent = Math.max(currentQty - 1, 0);
-                        }
-
-                        // Atualiza Livewire
-                        Livewire.dispatch('itemAdded');
+                        // atualiza quantidade local
+                        if (action === 'add') takeItems[itemName]++;
+                        if (action === 'remove') takeItems[itemName]--;
 
                         // Notificação
-                        new Notyf({ position: { x: 'right', y: 'top' } }).success(data.message);
+                        notyf.success(data.message);
+
+                        // Dispara evento Livewire
+                        Livewire.dispatch('itemAdded');
 
                     } catch (error) {
                         console.error(error);
-                        alert('Erro ao executar ação: ' + error.message);
+                        notyf.error('Erro ao executar ação: ' + error.message);
                     }
-
                 });
-
             });
-
         });
     </script>
 </div>

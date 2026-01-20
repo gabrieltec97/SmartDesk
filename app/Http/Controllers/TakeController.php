@@ -155,7 +155,6 @@ class TakeController extends Controller
         }
     }
 
-
     public function finish()
     {
         $user = Auth::user()->id;
