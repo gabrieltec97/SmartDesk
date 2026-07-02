@@ -17,13 +17,13 @@
                 @foreach($condos as $condo)
                     <tr>
                         <td class="ps-2 align-middle">
-                            <h6 class="text-sm"><a href="{{ route('condominios.show', $condo->id) }}">#{{ $condo->id }}</a></h6>
+                            <h6 class="text-sm">#{{ $condo->id }}</a></h6>
                         </td>
                         <td class="align-middle">
-                            <h6 class="text-sm"><a href="{{ route('condominios.show', $condo->id) }}">{{ $condo->name }}</a></h6>
+                            <h6 class="text-sm">{{ $condo->name }}</a></h6>
                         </td>
                         <td class="align-middle">
-                            <h6 class="text-sm"><a href="{{ route('condominios.show', $condo->id) }}">{{ $condo->location }}</a></h6>
+                            <h6 class="text-sm">{{ $condo->location }}</a></h6>
                         </td>
 
                         <td class="align-middle">
