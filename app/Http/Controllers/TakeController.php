@@ -36,8 +36,8 @@ class TakeController extends Controller
         $take->responsible_name = $responsible->name . ' ' . $responsible->surname;
         $take->date = $date_format;
 
-        $items = DB::table('take_items')->where('os_id', $id)->get();
-
+        $items = DB::table('take_items')->where('take_id', $id)->get();
+        
         return view('takes.take', [
             'take' => $take,
             'items' =>$items
