@@ -12,6 +12,11 @@ class CondominiosController extends Controller
         return view('condos');
     }
 
+    public function show($id)
+    {
+        echo $id;
+    }
+
     public function store(Request $request)
     {
         $condominium = new Condominios();
