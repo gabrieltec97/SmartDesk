@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Condominios;
 use App\Models\Estoque;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Unit;
 

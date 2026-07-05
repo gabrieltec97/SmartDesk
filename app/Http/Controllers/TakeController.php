@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Livewire\Takes;
 use App\Models\Condominios;
 use App\Models\Estoque;
 use App\Models\Funcionarios;
@@ -12,8 +11,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-
 class TakeController extends Controller
 {
     public function index()
