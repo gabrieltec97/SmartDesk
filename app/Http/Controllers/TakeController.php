@@ -37,13 +37,11 @@ class TakeController extends Controller
         $take->date = $date_format;
 
         $items = DB::table('take_items')->where('take_id', $id)->get();
-        
         return view('takes.take', [
             'take' => $take,
             'items' =>$items
         ]);
     }
-
     public function monthConverter()
     {
         $mes = date('M');
@@ -65,18 +63,17 @@ class TakeController extends Controller
 
         return $mes_extenso["$mes"];
     }
-
     public function addItem(Request $request)
     {
         $userId = Auth::id();
 
-        // 1️⃣ Busca retirada existente
+        // Busca retirada existente
         $take = DB::table('takes')
             ->where('responsible', $userId)
             ->where('status', 'Em separação')
             ->first();
 
-        // 2️⃣ Se não existe, cria uma nova
+        // Se não existe, cria uma nova
         if (!$take) {
             $takeId = DB::table('takes')->insertGetId([
                 'status' => 'Em separação',
@@ -94,19 +91,19 @@ class TakeController extends Controller
             $take = DB::table('takes')->where('id', $takeId)->first();
         }
 
-        // 3️⃣ Valida entrada
+        // Valida entrada
         $validatedData = $request->validate([
             'item' => 'required|string',
             'action' => 'required|in:add,remove',
         ]);
 
-        // 4️⃣ Busca item existente na retirada
+        // Busca item existente na retirada
         $takeItem = DB::table('take_items')
             ->where('take_id', $take->id)
             ->where('item', $validatedData['item'])
             ->first();
 
-        // 5️⃣ Adicionar ou remover
+        // Adicionar ou remover
         if ($validatedData['action'] === 'add') {
 
             if (!$takeItem) {
@@ -154,7 +151,6 @@ class TakeController extends Controller
             return response()->json(['message' => 'Item removido com sucesso!']);
         }
     }
-
     public function finish()
     {
         $user = Auth::user()->id;
@@ -218,7 +214,6 @@ class TakeController extends Controller
             $product->quantity -= $item->quantity;
             $product->save();
         }
-
         return redirect()->route('retiradas.index')->with('msg-success', 'Retirada registrada com sucesso!');
     }
 }
