@@ -10,17 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class OrderServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('serviceOrders.serviceOrder-management');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $user = Auth::user();
@@ -36,9 +30,6 @@ class OrderServiceController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $responsible = Auth::user();
@@ -52,9 +43,6 @@ class OrderServiceController extends Controller
         return redirect()->route('ordens-servico.index')->with('msg-success', 'Ordem de serviço cadastrada com sucesso! Se necessário adicione itens do estoque para esta OS.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $OS = OrderService::find($id);
@@ -79,29 +67,5 @@ class OrderServiceController extends Controller
             'items' => $items,
             'date' => $date_format
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(OrderService $orderService)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, OrderService $orderService)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(OrderService $orderService)
-    {
-        //
     }
 }

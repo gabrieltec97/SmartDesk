@@ -10,11 +10,6 @@ use App\Models\Unit;
 
 class HomeController extends Controller
 {
-    //public function __construct()
-    //{
-    //    $this->middleware('auth');
-    //}
-
     public function monthConverter()
     {
         $mes = date('M');
